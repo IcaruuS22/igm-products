@@ -413,7 +413,6 @@
       <p style="font-size: 13.5px; color: #5c6a60; margin: 0 0 20px; line-height: 1.5;">Preencha para eu já chegar no WhatsApp com o seu contexto.</p>
       <div style="display: flex; flex-direction: column; gap: 14px;">
         <label style="display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; font-weight: 700; color: #21302a;">Nome*<input value="{{ form.nome }}" onChange="{{ setNome }}" type="text" placeholder="Seu nome" style="padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(18,48,28,0.16); font-size: 14px; font-family: inherit; color: #15201a; background: #fff; outline: none; width: 100%; box-sizing: border-box;" style-focus="border-color: #27D005;"></label>
-        <label style="display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; font-weight: 700; color: #21302a;">Telefone / WhatsApp*<input value="{{ form.telefone }}" onChange="{{ setTelefone }}" type="tel" placeholder="(00) 00000-0000" style="padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(18,48,28,0.16); font-size: 14px; font-family: inherit; color: #15201a; background: #fff; outline: none; width: 100%; box-sizing: border-box;" style-focus="border-color: #27D005;"></label>
         <label style="display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; font-weight: 700; color: #21302a;">E-mail (opcional)<input value="{{ form.email }}" onChange="{{ setEmail }}" type="email" placeholder="voce@email.com" style="padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(18,48,28,0.16); font-size: 14px; font-family: inherit; color: #15201a; background: #fff; outline: none; width: 100%; box-sizing: border-box;" style-focus="border-color: #27D005;"></label>
         <label style="display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; font-weight: 700; color: #21302a;">Segmento*<select value="{{ form.segmento }}" onChange="{{ setSegmento }}" style="padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(18,48,28,0.16); font-size: 14px; font-family: inherit; color: #15201a; background: #fff; outline: none; width: 100%; box-sizing: border-box;" style-focus="border-color: #27D005;"><option value="">Selecione...</option><option value="Comércio / Loja">Comércio / Loja</option><option value="Serviços">Serviços</option><option value="Saúde">Saúde</option><option value="Contabilidade / Financeiro">Contabilidade / Financeiro</option><option value="Alimentação">Alimentação</option><option value="Beleza / Estética">Beleza / Estética</option><option value="Agência / Marketing">Agência / Marketing</option><option value="Outro">Outro</option></select></label>
         <p style="display: {{ formErrorDisplay }}; margin: 0; font-size: 12.5px; font-weight: 600; color: #c0392b;">{{ formError }}</p>
@@ -626,10 +625,9 @@ class Component extends DCLogic {
   setField(k, v) { this.setState(s => ({ form: { ...s.form, [k]: v } })); }
   submitForm() {
     const f = this.state.form;
-    if (!f.nome.trim() || !f.telefone.trim() || !f.segmento.trim()) { this.setState({ formError: "Preencha nome, telefone e segmento." }); return; }
+    if (!f.nome.trim() || !f.segmento.trim()) { this.setState({ formError: "Preencha nome e segmento." }); return; }
     const ctx = this.state.formContext ? (" (" + this.state.formContext + ")") : "";
     let msg = "Olá! Meu nome é " + f.nome + " e tenho interesse" + ctx + ".";
-    msg += "\nTelefone: " + f.telefone;
     if (f.email.trim()) msg += "\nE-mail: " + f.email;
     msg += "\nSegmento: " + f.segmento;
     window.open("https://wa.me/5533984311539?text=" + encodeURIComponent(msg), "_blank");
