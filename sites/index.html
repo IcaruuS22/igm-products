@@ -32,7 +32,7 @@
       {
         "@type": "FAQPage",
         "mainEntity": [
-          { "@type": "Question", "name": "Quanto custa um site?", "acceptedAnswer": { "@type": "Answer", "text": "O valor é definido após uma análise rápida do seu projeto: quantidade de páginas, funcionalidades e integrações. Você chama no WhatsApp, conta sobre o seu negócio e recebe o  sem compromisso." } },
+          { "@type": "Question", "name": "Quanto custa um site?", "acceptedAnswer": { "@type": "Answer", "text": "O valor é definido após uma análise rápida do seu projeto: quantidade de páginas, funcionalidades e integrações. Você chama no WhatsApp, conta sobre o seu negócio e recebe o orçamento sem compromisso." } },
           { "@type": "Question", "name": "Em quanto tempo fica pronto?", "acceptedAnswer": { "@type": "Answer", "text": "Até 5 dias úteis após o envio do material, como fotos e textos do seu negócio." } },
           { "@type": "Question", "name": "Preciso pagar mensalidade?", "acceptedAnswer": { "@type": "Answer", "text": "Sim, há uma mensalidade de hospedagem e suporte técnico, apresentada junto com o orçamento. O primeiro mês é grátis." } },
           { "@type": "Question", "name": "Eu preciso fornecer alguma coisa?", "acceptedAnswer": { "@type": "Answer", "text": "Fotos, textos e logo do seu negócio. Se você não tiver logo, eu oriento como resolver isso." } },
@@ -143,7 +143,7 @@
         </div>
 
         <div class="hero-cta" style="grid-area: cta; display: flex; flex-direction: column; gap: 10px; margin-top: 4px;">
-          <button type="button" onClick="{{ openForm }}" class="cta-whatsapp" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: #27D005; color: #062600; font-weight: 700; font-size: 15px; padding: 16px 28px; border-radius: 100px; border: none; cursor: pointer; font-family: inherit; box-shadow: 0 16px 34px -12px rgba(39,208,5,0.6); animation: pulseWA 2.2s infinite;" style-hover="background: #1FA804;">{{ whatsappIcon }} QUERO MEU ORÇAMENTO</button>
+          <button type="button" onClick="{{ openForm }}" class="cta-whatsapp" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: #27D005; color: #062600; font-weight: 700; font-size: 15px; padding: 16px 28px; border-radius: 100px; border: none; cursor: pointer; font-family: inherit; box-shadow: 0 16px 34px -12px rgba(39,208,5,0.6); animation: pulseWA 2.2s infinite;" style-hover="background: #1FA804;">{{ whatsappIcon }} QUERO MEU ORÇAMENTO GRATUITO</button>
           
           <div style="display: inline-flex; align-items: center; gap: 11px; margin-top: 4px;"><span style="width: 34px; height: 34px; border-radius: 10px; background: rgba(39,208,5,0.16); color: #46e024; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;">{{ shieldMini }}</span><span style="display: flex; flex-direction: column; line-height: 1.25;"><span style="font-size: 13px; font-weight: 700; color: #fbfff9;">Você só paga após o site pronto e aprovado.</span></span></div>
         </div>
@@ -275,7 +275,7 @@
   </section>
 
   <!-- PORTFÓLIO (bento) -->
-  <section data-screen-label="Portfolio" id="portfolio" class="reveal" style="max-width: 1320px; margin: 0 auto; padding: clamp(44px, 8vw, 60px) 20px; background-image: radial-gradient(40% 70% at 92% 60%, rgba(255,224,178,0.35), transparent 65%);">
+  <section data-screen-label="Portfolio" id="portfolio" class="reveal" style="max-width: 1320px; margin: 0 auto; padding: clamp(44px, 8vw, 60px) 20px; background-image: radial-gradient(40% 70% at 92% 60%, rgba(255,224,178,0.35), transparent 65%); padding-top: clamp(44px, 8vw, 60px); padding-bottom: clamp(44px, 8vw, 60px); padding-left: 20px; padding-right: 20px">
     <div style="text-align: center; max-width: 620px; margin: 0 auto 44px;">
       <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(28px, 4vw, 42px); margin: 0 0 8px; letter-spacing: -0.01em;">Projetos que já estão no ar</h2>
       <p style="color: #4a564d; font-size: 15px; margin: 0;">Sites reais, criados pela IGM para negócios reais</p>
@@ -300,24 +300,7 @@
   </section>
 
   <!-- SOBRE A IGM -->
-  <section data-screen-label="Sobre" class="reveal" style="max-width: 1320px; margin: 0 auto; padding: clamp(44px, 8vw, 60px) 20px;">
-    <div class="sobre-grid" style="display: grid; grid-template-columns: 1fr; gap: 36px; align-items: center;">
-      <div style="border-radius: 28px; overflow: hidden; box-shadow: 0 30px 60px -28px rgba(20,60,20,0.4);">
-        <img src="igm-equipe.jpg" alt="Equipe da IGM no escritório" loading="lazy" decoding="async" width="1100" height="733" style="width: 100%; height: auto; object-fit: cover; display: block;">
-      </div>
-      <div>
-        
-        <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(28px, 4vw, 42px); line-height: 1.14; margin: 0 0 16px; letter-spacing: -0.01em;">Gente obcecada por transformar cliques em clientes</h2>
-        <p style="font-size: 15px; line-height: 1.7; color: #4a564d; margin: 0 0 14px; max-width: 520px;">A Inbound Growth Marketing existe para colocar pequenos e médios negócios no digital do jeito certo. Não entregamos só um site bonito: entregamos uma estrutura pensada para gerar contato, venda e crescimento.</p>
-        <p style="font-size: 15px; line-height: 1.7; color: #4a564d; margin: 0 0 22px; max-width: 520px;">Unimos design, tráfego pago e automação em uma operação só. Cada projeto nasce com uma meta clara e o acompanhamento continua depois da entrega — porque o seu resultado é o nosso.</p>
-        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-          <sc-for list="{{ sobrePilares }}" as="p" hint-placeholder-count="5">
-            <span style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.6); border: 1px solid rgba(18,48,28,0.08); border-radius: 100px; padding: 9px 15px; font-size: 13.5px; font-weight: 600; color: #21302a;"><span style="display: inline-flex; color: #1a8f00;">{{ checkIcon }}</span>{{ p }}</span>
-          </sc-for>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 
   <!-- ATENDIMENTO NACIONAL -->
   <section data-screen-label="Brasil" class="reveal" style="max-width: 1320px; margin: 0 auto; padding: clamp(44px, 8vw, 60px) 20px;">
@@ -423,7 +406,7 @@
             <span aria-hidden="true" style="color: rgba(18,48,28,0.3); font-size: 12px; align-self: center;">•</span>
             <a href="https://www.behance.net/igm" target="_blank" rel="noopener" style="color: #4a564d; text-decoration: none;" style-hover="color: #1a8f00;">Behance</a>
             <span aria-hidden="true" style="color: rgba(18,48,28,0.3); font-size: 12px; align-self: center;">•</span>
-            <a href="/api-oficial" style="color: #4a564d; text-decoration: none;" style-hover="color: #1a8f00;">API Oficial do WhatsApp</a>
+            <a href="api-oficial.dc.html" style="color: #4a564d; text-decoration: none;" style-hover="color: #1a8f00;">API Oficial do WhatsApp</a>
             <span aria-hidden="true" style="color: rgba(18,48,28,0.3); font-size: 12px; align-self: center;">•</span>
             <a href="https://igmarketing.vercel.app" target="_blank" rel="noopener" style="color: #4a564d; text-decoration: none;" style-hover="color: #1a8f00;">Site institucional</a>
           </div>
