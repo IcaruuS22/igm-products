@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>IGM | Implementação de API Oficial do WhatsApp</title>
+  <link rel="icon" type="image/png" href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/igm-removebg-preview-2Wkd69J1dATe99R9tzzZhVJmMRM2wf.png">
+  <link rel="apple-touch-icon" href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/igm-removebg-preview-2Wkd69J1dATe99R9tzzZhVJmMRM2wf.png">
+  <meta name="description" content="Implementação e configuração de API Oficial do WhatsApp: Tech Provider, Cadastro Incorporado, Chatwoot, n8n e envio em massa.">
+  <meta property="og:title" content="IGM | Implementação de API Oficial do WhatsApp">
+  <meta property="og:description" content="Estrutura profissional de API Oficial: Tech Provider, Coexistência, Chatwoot, n8n e broadcast em massa, prontos para operar.">
+  <meta property="og:type" content="website">
+  <!-- <meta name="google-site-verification" content="COLOQUE_AQUI_O_CODIGO"> -->
+  <!-- Google Tag Manager: cole o script aqui -->
+  <!-- Meta Pixel: cole o script aqui -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "IGM - Inbound Growth Marketing",
+        "description": "Implementação e configuração de API Oficial do WhatsApp, Tech Provider, Cadastro Incorporado, Chatwoot, n8n e envio em massa.",
+        "url": "https://igmarketing.vercel.app",
+        "sameAs": ["https://instagram.com/igm"]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Você garante a aprovação como Tech Provider?", "acceptedAnswer": { "@type": "Answer", "text": "Não. A decisão final é sempre da Meta. O serviço consiste em preparar, configurar e conduzir o processo da forma mais correta possível, evitando erros técnicos e aumentando as chances de aprovação." } },
+          { "@type": "Question", "name": "Quanto custa a implementação de API Oficial?", "acceptedAnswer": { "@type": "Answer", "text": "Não trabalho com valor de tabela. O investimento é definido após um diagnóstico do seu cenário: infraestrutura, volume, automações e objetivo da operação." } },
+          { "@type": "Question", "name": "Quanto tempo leva a implementação?", "acceptedAnswer": { "@type": "Answer", "text": "Depende do escopo e do cenário atual. Após o diagnóstico eu apresento o prazo estimado do projeto." } },
+          { "@type": "Question", "name": "O que preciso ter para começar?", "acceptedAnswer": { "@type": "Answer", "text": "Em geral: Business Manager, um domínio e, no plano Premium, uma VPS. No diagnóstico eu confirmo o que falta no seu caso." } },
+          { "@type": "Question", "name": "Consigo revender esse serviço?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. A estrutura é preparada para você operar e oferecer a implementação e o envio em massa como serviço recorrente para outras empresas." } }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="preload" as="image" fetchpriority="high" href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/P%C3%A1gina%20Institucional%20Contabilidade%20_%20ContabilOn_1770909215222-GLleHWu10IcGCZXrp5drW9Rj20T917.webp">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"></noscript>
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; }
+    ::selection { background: #bff2a8; color: #062600; }
+    .glass { background: rgba(255,255,255,0.86); backdrop-filter: blur(18px) saturate(150%); -webkit-backdrop-filter: blur(18px) saturate(150%); border: 1px solid rgba(18,48,28,0.07); }
+    .glass-deep { background: rgba(255,255,255,0.78); backdrop-filter: blur(24px) saturate(160%); -webkit-backdrop-filter: blur(24px) saturate(160%); border: 1px solid rgba(18,48,28,0.08); }
+    .glass-dark { background: rgba(255,255,255,0.09); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.16); }
+    .grain { position: relative; }
+    .grain::after { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.7) 1px, transparent 1px); background-size: 4px 4px; opacity: 0.15; mix-blend-mode: overlay; pointer-events: none; border-radius: inherit; }
+    @keyframes pulseWA { 0% { box-shadow: 0 0 0 0 rgba(39,208,5,0.5); } 70% { box-shadow: 0 0 0 16px rgba(39,208,5,0); } 100% { box-shadow: 0 0 0 0 rgba(39,208,5,0); } }
+    @keyframes scrollLoop { 0%, 8% { transform: translateY(0); } 46%, 54% { transform: translateY(calc(-1 * var(--scroll-dist, 0px))); } 92%, 100% { transform: translateY(0); } }
+    .hero-cta { align-items: center; text-align: center; }
+    .hero-cta > a, .hero-cta > button { width: 100%; }
+    .cred-section { display: none; }
+    .footer-cols { text-align: center; }
+    .footer-logo { height: 60px !important; margin-left: auto !important; margin-right: auto !important; }
+    .footer-desc { margin-left: auto; margin-right: auto; }
+    .footer-contato { flex-direction: row !important; flex-wrap: wrap; justify-content: center; gap: 8px 8px !important; }
+    @media (min-width: 900px) {
+      .hero-cta { align-items: flex-start !important; text-align: left !important; }
+      .hero-cta > a, .hero-cta > button { width: auto !important; }
+      .cred-section { display: block !important; }
+      .footer-cols { text-align: left !important; }
+      .footer-logo { height: 28px !important; margin-left: 0 !important; margin-right: 0 !important; }
+      .footer-desc { margin-left: 0; margin-right: 0; }
+      .footer-contato { justify-content: flex-start; }
+    }
+    .reveal { opacity: 0; transform: translateY(44px); transition: opacity 0.8s cubic-bezier(0.22,0.61,0.36,1), transform 0.8s cubic-bezier(0.22,0.61,0.36,1); will-change: opacity, transform; }
+    .reveal.reveal--in { opacity: 1; transform: none; }
+    .stagger > * { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22,0.61,0.36,1); }
+    .reveal--in .stagger > * { opacity: 1; transform: none; }
+    .reveal--in .stagger > *:nth-child(2) { transition-delay: 0.08s; }
+    .reveal--in .stagger > *:nth-child(3) { transition-delay: 0.16s; }
+    .reveal--in .stagger > *:nth-child(4) { transition-delay: 0.24s; }
+    .reveal--in .stagger > *:nth-child(5) { transition-delay: 0.32s; }
+    .reveal--in .stagger > *:nth-child(6) { transition-delay: 0.40s; }
+    @media (prefers-reduced-motion: reduce) { * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; } .reveal { opacity: 1 !important; transform: none !important; } .stagger > * { opacity: 1 !important; transform: none !important; } }
+    @media (min-width: 900px) {
+      .nav-links { display: flex !important; }      .hero-grid { grid-template-columns: 1.02fr 0.98fr !important; grid-template-areas: 'text mock' 'cta mock' !important; gap: 24px 24px !important; padding: 56px 48px 56px !important; align-items: center !important; }
+      .grid3 { grid-template-columns: repeat(3, 1fr) !important; }
+      .grid2 { grid-template-columns: repeat(2, 1fr) !important; }
+      .cred-row { grid-template-columns: repeat(4, 1fr) !important; }
+      .cred-item { border-top: none !important; border-left: 1px solid rgba(18,48,28,0.08) !important; }
+      .cred-item:first-child { border-left: none !important; }
+      .footer-cols { grid-template-columns: 2fr 1fr !important; }
+    }
+  </style>
+</helmet>
+
+<div style="font-family: Inter, sans-serif; color: #15201a; min-height: 100vh; overflow-x: hidden; background-color: #f7fbf3; background-attachment: fixed; background-image: radial-gradient(48% 60% at 8% 0%, rgba(191,242,168,0.85) 0%, transparent 65%), radial-gradient(45% 55% at 95% 12%, rgba(198,235,255,0.8) 0%, transparent 65%), radial-gradient(50% 60% at 85% 80%, rgba(191,242,168,0.7) 0%, transparent 62%), radial-gradient(45% 55% at 10% 92%, rgba(255,224,178,0.6) 0%, transparent 62%), radial-gradient(40% 50% at 50% 45%, rgba(198,235,255,0.4) 0%, transparent 65%);">
+
+  <!-- BARRA DE URGÊNCIA -->
+  <div style="position: relative; z-index: 61; background: #15201a; color: #bff2a8; padding: 9px 16px; text-align: center; font-size: 12.5px; font-weight: 600; line-height: 1.4;">
+    Estrutura profissional de API Oficial do WhatsApp — solicite seu diagnóstico gratuito.
+  </div>
+
+  <!-- NAV FLUTUANTE -->
+  <header style="position: sticky; top: 0; z-index: 60; padding: 14px 16px 0;">
+    <nav class="glass" style="max-width: 1180px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; border-radius: 100px; padding: 8px 8px 8px 18px; box-shadow: 0 20px 50px -24px rgba(20,60,20,0.25);">
+      <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/igm-removebg-preview-2Wkd69J1dATe99R9tzzZhVJmMRM2wf.png" alt="Logo IGM" fetchpriority="high" decoding="async" width="120" height="40" style="height: 40px; width: auto;">
+      <div class="nav-links" style="display: none; align-items: center; gap: 2px; background: rgba(255,255,255,0.5); border-radius: 100px; padding: 4px; font-size: 13.5px; font-weight: 600;">
+        <span aria-hidden="true" style="color: rgba(18,48,28,0.3); font-size: 12px; align-self: center;">•</span>
+            <a href="/sites" style="padding: 8px 16px; border-radius: 100px; color: #3d4a42; text-decoration: none;" style-hover="background: #fff; color: #15201a;">Sites</a>
+        <a href="#planos" style="padding: 8px 16px; border-radius: 100px; color: #3d4a42; text-decoration: none;" style-hover="background: #fff; color: #15201a;">Planos</a>
+        <a href="#como-funciona" style="padding: 8px 16px; border-radius: 100px; color: #3d4a42; text-decoration: none;" style-hover="background: #fff; color: #15201a;">Como funciona</a>
+        <a href="#faq" style="padding: 8px 16px; border-radius: 100px; color: #3d4a42; text-decoration: none;" style-hover="background: #fff; color: #15201a;">Dúvidas</a>
+      </div>
+      <button type="button" onClick="{{ openForm }}" class="cta-whatsapp" style="display: inline-flex; align-items: center; gap: 8px; background: #27D005; color: #062600; font-weight: 700; font-size: 13.5px; padding: 10px 18px; border-radius: 100px; border: none; cursor: pointer; font-family: inherit;" style-hover="background: #1FA804;">
+        Diagnóstico
+      </button>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section data-screen-label="Hero" style="max-width: 1180px; margin: 0 auto; padding: 24px 16px 0;">
+    <div class="grain" style="position: relative; overflow: hidden; border-radius: 34px; background: radial-gradient(120% 120% at 100% 0%, #16281c 0%, #0b110d 55%); box-shadow: 0 40px 90px -40px rgba(11,17,13,0.7);">
+      <div style="position: absolute; top: -80px; right: -60px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(39,208,5,0.28), transparent 68%); pointer-events: none;"></div>
+      <div class="hero-grid" style="position: relative; display: grid; grid-template-columns: 1fr; grid-template-areas: 'text' 'mock' 'cta'; gap: 24px; padding: 44px 24px 44px; align-items: start;">
+        <div style="grid-area: text; display: flex; flex-direction: column; align-items: flex-start; gap: 22px;">
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <span class="glass-dark" style="border-radius: 100px; padding: 7px 14px; font-size: 12.5px; font-weight: 600; color: #eafae4; display: inline-flex; align-items: center; gap: 7px;"><span style="color: #46e024; display: inline-flex; align-items: center; line-height: 0;">{{ sparkIcon }}</span>API Oficial + Tech Provider</span>
+            <span class="glass-dark" style="border-radius: 100px; padding: 7px 14px; font-size: 12.5px; font-weight: 600; color: #eafae4; display: inline-flex; align-items: center; gap: 7px;"><span style="color: #46e024; display: inline-flex; align-items: center; line-height: 0;">{{ boltIcon }}</span>Chatwoot • n8n • Broadcast</span>
+            
+          </div>
+          <h1 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(34px, 5vw, 58px); line-height: 1.04; letter-spacing: -0.02em; margin: 0; color: #fbfff9;">
+            Sua operação pronta para disparar em massa pela <span style="color: #46e024;">API Oficial do WhatsApp</span>.
+          </h1>
+          <p style="font-size: clamp(15px, 1.6vw, 18px); line-height: 1.6; color: #a9b8ad; margin: 0; max-width: 480px;">
+            Implemento toda a estrutura técnica para sua empresa operar com API Oficial, Tech Provider, Cadastro Incorporado, Coexistência, Chatwoot, n8n e campanhas em massa no WhatsApp.
+          </p>
+        </div>
+
+        <div class="hero-cta" style="grid-area: cta; display: flex; flex-direction: column; gap: 10px; margin-top: 4px;">
+          <button type="button" onClick="{{ openForm }}" class="cta-whatsapp" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: #27D005; color: #062600; font-weight: 700; font-size: 15px; padding: 16px 28px; border-radius: 100px; border: none; cursor: pointer; font-family: inherit; box-shadow: 0 16px 34px -12px rgba(39,208,5,0.6);" style-hover="background: #1FA804;">
+            {{ whatsappIcon }} QUERO MEU DIAGNÓSTICO
+          </button>
+          <p style="font-size: 12.5px; color: #7f8f83; margin: 0;">Análise do seu cenário. Sem compromisso.</p>
+        </div>
+
+        <!-- PAINEL DE STATUS DA OPERAÇÃO -->
+        <div style="grid-area: mock; position: relative; width: 100%; max-width: 440px; margin: 4px auto 0; align-self: center;">
+          <div class="glass-dark grain" style="border-radius: 24px; padding: 20px; box-shadow: 0 30px 60px -24px rgba(0,0,0,0.6);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+              <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #fbfff9; font-size: 14px;">Status da operação</span>
+              <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; color: #46e024; background: rgba(39,208,5,0.14); padding: 4px 10px; border-radius: 100px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #46e024;"></span>AO VIVO</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 9px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 13px 15px;"><span style="display: flex; align-items: center; gap: 11px; color: #eafae4; font-size: 13.5px; font-weight: 600;"><span style="width: 8px; height: 8px; border-radius: 50%; background: #46e024; box-shadow: 0 0 0 4px rgba(70,224,36,0.16);"></span>API Oficial</span><span style="font-size: 11.5px; font-weight: 700; color: #9fb3a4;">Conectada</span></div>
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 13px 15px;"><span style="display: flex; align-items: center; gap: 11px; color: #eafae4; font-size: 13.5px; font-weight: 600;"><span style="width: 8px; height: 8px; border-radius: 50%; background: #46e024; box-shadow: 0 0 0 4px rgba(70,224,36,0.16);"></span>Broadcast em massa</span><span style="font-size: 11.5px; font-weight: 700; color: #9fb3a4;">Ativo</span></div>
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 13px 15px;"><span style="display: flex; align-items: center; gap: 11px; color: #eafae4; font-size: 13.5px; font-weight: 600;"><span style="width: 8px; height: 8px; border-radius: 50%; background: #46e024; box-shadow: 0 0 0 4px rgba(70,224,36,0.16);"></span>Chatwoot</span><span style="font-size: 11.5px; font-weight: 700; color: #9fb3a4;">Configurado</span></div>
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 13px 15px;"><span style="display: flex; align-items: center; gap: 11px; color: #eafae4; font-size: 13.5px; font-weight: 600;"><span style="width: 8px; height: 8px; border-radius: 50%; background: #46e024; box-shadow: 0 0 0 4px rgba(70,224,36,0.16);"></span>n8n</span><span style="font-size: 11.5px; font-weight: 700; color: #9fb3a4;">Automatizado</span></div>
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 13px 15px;"><span style="display: flex; align-items: center; gap: 11px; color: #eafae4; font-size: 13.5px; font-weight: 600;"><span style="width: 8px; height: 8px; border-radius: 50%; background: #46e024; box-shadow: 0 0 0 4px rgba(70,224,36,0.16);"></span>Operação</span><span style="font-size: 11.5px; font-weight: 700; color: #9fb3a4;">Escalável</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAIXA DE CREDIBILIDADE -->
+  <section class="cred-section" style="max-width: 1180px; margin: 0 auto; padding: 28px 20px 0;">
+    <div class="glass" style="border-radius: 20px; overflow: hidden; box-shadow: 0 24px 50px -34px rgba(20,60,20,0.28);">
+      <div class="cred-row" style="display: grid; grid-template-columns: 1fr;">
+        <sc-for list="{{ credItems }}" as="cred" hint-placeholder-count="4">
+          <div class="cred-item" style="display: flex; align-items: center; gap: 13px; padding: 18px 22px; border-top: 1px solid rgba(18,48,28,0.08);">
+            <span style="width: 38px; height: 38px; flex-shrink: 0; border-radius: 11px; background: rgba(39,208,5,0.14); color: #1a8f00; display: inline-flex; align-items: center; justify-content: center;">{{ cred.icon }}</span>
+            <span style="font-size: 13.5px; font-weight: 600; line-height: 1.3; color: #21302a;">{{ cred.label }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- POR QUE TER UM SITE PROFISSIONAL -->
+  <section data-screen-label="Beneficios" class="reveal" style="max-width: 1180px; margin: 0 auto; padding: clamp(56px, 9vw, 100px) 20px clamp(40px, 7vw, 60px); background-image: radial-gradient(40% 90% at 90% 20%, rgba(198,235,255,0.35), transparent 65%);">
+    <div style="max-width: 620px; margin: 0 auto 44px; text-align: center;">
+      <span class="glass" style="display: inline-flex; align-items: center; gap: 7px; border-radius: 100px; padding: 7px 15px; font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #1a8f00; margin-bottom: 18px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #27D005;"></span>Por que API Oficial</span>
+      <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(28px, 4vw, 42px); line-height: 1.15; margin: 0; letter-spacing: -0.01em;">Uma operação de API Oficial leva sua comunicação a outro nível</h2>
+    </div>
+    <div class="grid3 stagger" style="display: grid; grid-template-columns: 1fr; gap: 18px;">
+      <sc-for list="{{ whyCards }}" as="card" hint-placeholder-count="6">
+        <div class="glass grain" style="border-radius: 24px; padding: 26px 24px; transition: transform 0.25s ease; box-shadow: 0 24px 50px -30px rgba(20,60,20,0.25);" style-hover="transform: translateY(-4px);">
+          <div style="width: 46px; height: 46px; border-radius: 14px; background: rgba(39,208,5,0.16); display: flex; align-items: center; justify-content: center; color: #1a8f00; margin-bottom: 16px;">{{ card.icon }}</div>
+          <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 16.5px; font-weight: 700; margin: 0 0 8px;">{{ card.title }}</h3>
+          <p style="font-size: 14px; line-height: 1.6; color: #4a564d; margin: 0;">{{ card.desc }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section data-screen-label="Como funciona" id="como-funciona" class="reveal" style="max-width: 1180px; margin: 0 auto; padding: clamp(44px, 8vw, 60px) 20px;">
+    <div class="glass-deep grain" style="border-radius: 32px; padding: clamp(30px, 6vw, 48px) clamp(20px, 5vw, 32px); box-shadow: 0 30px 60px -30px rgba(20,60,20,0.25);">
+      <div style="text-align: center; max-width: 620px; margin: 0 auto 44px;">
+        <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(28px, 4vw, 42px); line-height: 1.15; margin: 0; letter-spacing: -0.01em;">Do diagnóstico à operação rodando, sem você travar na documentação da Meta</h2>
+      </div>
+      <div class="grid2 stagger" style="display: grid; grid-template-columns: 1fr; gap: 18px;">
+        <sc-for list="{{ steps }}" as="step" hint-placeholder-count="4">
+          <div style="display: flex; gap: 18px; align-items: flex-start; background: rgba(255,255,255,0.55); border: 1px solid rgba(18,48,28,0.06); border-radius: 18px; padding: 22px 24px;">
+            <div style="width: 54px; height: 54px; flex-shrink: 0; border-radius: 15px; background: #15201a; color: #46e024; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 24px; display: flex; align-items: center; justify-content: center;">{{ step.n }}</div>
+            <div style="padding-top: 3px;">
+              <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700; margin: 0 0 6px;">{{ step.title }}</h3>
+              <p style="font-size: 14px; line-height: 1.6; color: #4a564d; margin: 0;">{{ step.desc }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- O QUE ESTÁ INCLUSO -->
+  <section data-screen-label="Incluso" class="reveal" style="max-width: 1180px; margin: 0 auto; padding: clamp(44px, 8vw, 60px) 20px;">
+    <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(28px, 4vw, 42px); text-align: center; margin: 0 0 40px; letter-spacing: -0.01em;">Sua estrutura entregue 100% pronta para operar</h2>
+    <div class="grid2 stagger" style="display: grid; grid-template-columns: 1fr; gap: 14px;">
+      <sc-for list="{{ included }}" as="item" hint-placeholder-count="6">
+        <div class="glass grain" style="display: flex; align-items: center; gap: 14px; border-radius: 18px; padding: 18px 20px; box-shadow: 0 20px 44px -30px rgba(20,60,20,0.25); transition: transform 0.2s ease;" style-hover="transform: translateY(-3px);">
+          <span style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 12px; background: rgba(39,208,5,0.16); color: #1a8f00; display: flex; align-items: center; justify-content: center;">{{ checkIcon }}</span>
+          <span style="font-size: 14.5px; font-weight: 600; line-height: 1.45; color: #21302a;">{{ item }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- COMPARAÇÃO -->
+  <section data-screen-label="Planos" id="planos" class="reveal" style="max-width: 1180px; margin: 0 auto; padding: clamp(44px, 8vw, 60px) 20px;">
+    <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(28px, 4vw, 42px); text-align: center; margin: 0 0 8px; letter-spacing: -0.01em;">Escolha o tipo de implementação ideal</h2>
+    <p style="text-align: center; color: #4a564d; font-size: 15px; margin: 0 0 40px; max-width: 560px; margin-left: auto; margin-right: auto;">Cada projeto é analisado individualmente. O escopo e o investimento são definidos após o diagnóstico do seu cenário.</p>
+    <div class="grid2 stagger" style="display: grid; grid-template-columns: 1fr; gap: 20px; align-items: stretch;">
+      <div class="glass-deep" style="border-radius: 22px; overflow: hidden; box-shadow: 0 24px 50px -30px rgba(20,60,20,0.25); display: flex; flex-direction: column;">
+        <div style="padding: 24px 26px; border-bottom: 1px solid rgba(18,48,28,0.06);">
+          <h3 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 19px; margin: 0 0 6px;">Implementação Tech Provider</h3>
+          <p style="font-size: 13.5px; color: #5c6a60; margin: 0; line-height: 1.5;">Para quem já tem infraestrutura e precisa da parte técnica para operar com API Oficial.</p>
+        </div>
+        <div style="padding: 22px 26px; display: flex; flex-direction: column; gap: 12px; flex: 1;">
+          <div style="display: flex; gap: 11px; align-items: flex-start;"><span style="color: #1a8f00; flex-shrink: 0; margin-top: 1px;">{{ checkIcon }}</span><span style="font-size: 14px; line-height: 1.55; color: #1a2620;">Configuração do Meta Developers</span></div>
+          <div style="display: flex; gap: 11px; align-items: flex-start;"><span style="color: #1a8f00; flex-shrink: 0; margin-top: 1px;">{{ checkIcon }}</span><span style="font-size: 14px; line-height: 1.55; color: #1a2620;">Configuração da API Oficial</span></div>
+          <div style="display: flex; gap: 11px; align-items: flex-start;"><span style="color: #1a8f00; flex-shrink: 0; margin-top: 1px;">{{ checkIcon }}</span><span style="font-size: 14px; line-height: 1.55; color: #1a2620;">Preparação do Tech Provider</span></div>
+          <div style="display: flex; gap: 11px; align-items: flex-start;"><span style="color: #1a8f00; flex-shrink: 0; margin-top: 1px;">{{ checkIcon }}</span><span style="font-size: 14px; line-height: 1.55; color: #1a2620;">Cadastro Incorporado</span></div>
+          <div style="display: flex; gap: 11px; align-items: flex-start;"><span style="color: #1a8f00; flex-shrink: 0; margin-top: 1px;">{{ checkIcon }}</span><span style="font-size: 14px; line-height: 1.55; color: #1a2620;">Coexistência</span></div>
+          <div style="display: flex; gap: 11px; align-items: flex-start;"><span style="color: #1a8f00; flex-shrink: 0; margin-top: 1px;">{{ checkIcon }}</span><span style="font-size: 14px; line-height: 1.55; color: #1a2620;">Ajustes técnicos conforme o seu cenário</span></div>
+        </div>
+        <div style="padding: 0 26px 26px;">
+          <p style="font-size: 12.5px; color: #7f8f83; margin: 0 0 14px; line-height: 1.5;">Projeto sob diagnóstico. O escopo é definido após análise da sua estrutura atual.</p>
+          <button type="button" onClick="{{ openFormDiag }}" class="cta-whatsapp" style="display: flex; align-items: center; justify-content: center; gap: 10px; background: #15201a; color: #fff; font-weight: 700; font-size: 14px; padding: 14px 24px; border-radius: 100px; border: none; cursor: pointer; font-family: inherit; width: 100%;" style-hover="background: #263229;">{{ whatsappIcon }} Solicitar diagnóstico</button>
+        </div>
+      </div>
+      <div class="glass-deep grain" style="border-radius: 22px; overflow: hidden; border: 1px solid rgba(39,208,5,0.4); box-shadow: 0 30px 60px -30px rgba(20,60,20,0.32); display: flex; flex-direction: column; position: relative;">
+        <span style="position: absolute; top: 16px; right: 16px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #062600; background: #27D005; padding: 5px 11px; border-radius: 100px;">Completa</span>
+        <div style="padding: 24px 26px; background: rgba(39,208,5,0.12); border-bottom: 1px solid rgba(255,255,255,0.6);">
+          <h3 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 19px; margin: 0 0 6px; color: #1a8f00; padding-right: 100px;">Implementação Completa Premium</h3>
+          <p style="font-size: 13.5px; color: #4a564d; margin: 0; line-height: 1.5;">Operação completa e pronta para usar: API Oficial, Chatwoot, n8n, automações e envio em massa.</p>
+        </div>
+        <div style="padding: 22px 26px; display: flex; flex-direction: column; gap: 12px; flex: 1;">
+          <div style="display: flex; gap: 11px; align-items: flex-start;"><span style="color: #1a8f00; flex-shrink: 0; margin-top: 1px;">{{ checkIcon }}</span><span style="font-size: 14px; line-height: 1.55; color: #1a2620;">Configuração da VPS</span></div>
+          <div style="display: flex; gap: 11px; align-items: flex-start;"><span style="color: #1a8f00; flex-shrink: 0; margin-top: 1px;">{{ checkIcon }}</span><span style="font-size: 14px; line-height: 1.55; color: #1a2620;">Instalação do Chatwoot</span></div>
+          <div style="display: flex; gap: 11px; align-items: flex-start;"><span style="color: #1a8f00; flex-shrink: 0; margin-top: 1px;">{{ checkIcon }}</span><span style="font-size: 14px; line-height: 1.55; color: #1a2620;">Instalação do n8n</span></div>
+          <div style="display: flex; gap: 11px; align-items: flex-start;"><span style="color: #1a8f00; flex-shrink: 0; margin-top: 1px;">{{ checkIcon }}</span><span style="font-size: 14px; line-height: 1.55; color: #1a2620;">API Oficial conectada</span></div>
+          <div style="display: flex; gap: 11px; align-items: flex-start;"><span style="color: #1a8f00; flex-shrink: 0; margin-top: 1px;">{{ checkIcon }}</span><span style="font-size: 14px; line-height: 1.55; color: #1a2620;">Broadcast pronto para disparos</span></div>
+          <div style="display: flex; gap: 11px; align-items: flex-start;"><span style="color: #1a8f00; flex-shrink: 0; margin-top: 1px;">{{ checkIcon }}</span><span style="font-size: 14px; line-height: 1.55; color: #1a2620;">Estrutura para recorrência e escala</span></div>
+        </div>
+        <div style="padding: 0 26px 26px;">
+          <p style="font-size: 12.5px; color: #7f8f83; margin: 0 0 14px; line-height: 1.5;">Projeto premium sob medida, conforme infraestrutura e volume da operação.</p>
+          <button type="button" onClick="{{ openFormPremium }}" class="cta-whatsapp" style="display: flex; align-items: center; justify-content: center; gap: 10px; background: #27D005; color: #062600; font-weight: 700; font-size: 14px; padding: 14px 24px; border-radius: 100px; border: none; cursor: pointer; font-family: inherit; width: 100%;" style-hover="background: #1FA804;">{{ whatsappIcon }} Solicitar projeto premium</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFÓLIO (bento) -->
+  <section data-screen-label="Portfolio" id="portfolio" class="reveal" style="max-width: 1180px; margin: 0 auto; padding: clamp(44px, 8vw, 60px) 20px; background-image: radial-gradient(40% 70% at 92% 60%, rgba(255,224,178,0.35), transparent 65%);">
+    <div style="text-align: center; max-width: 640px; margin: 0 auto 44px;">
+      <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(28px, 4vw, 42px); margin: 0 0 8px; letter-spacing: -0.01em;">Validações e estruturas do processo</h2>
+      <p style="color: #4a564d; font-size: 15px; margin: 0;">Muito além de instalar ferramentas: preparo corretamente Meta, API Oficial, Cadastro Incorporado e Business Manager.</p>
+    </div>
+    <div class="grid3 stagger" style="display: grid; grid-template-columns: 1fr; gap: 18px;">
+      <div class="glass grain" style="border-radius: 22px; padding: 24px 22px; box-shadow: 0 24px 50px -30px rgba(20,60,20,0.25);"><div style="width: 46px; height: 46px; border-radius: 14px; background: rgba(39,208,5,0.16); display: flex; align-items: center; justify-content: center; color: #1a8f00; margin-bottom: 14px;">{{ checkIcon }}</div><h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700; margin: 0 0 7px;">Análise Aprovada</h3><p style="font-size: 13.5px; line-height: 1.6; color: #4a564d; margin: 0;">Preparação da estrutura, organização dos dados e condução do processo técnico para análise da Meta.</p></div>
+      <div class="glass grain" style="border-radius: 22px; padding: 24px 22px; box-shadow: 0 24px 50px -30px rgba(20,60,20,0.25);"><div style="width: 46px; height: 46px; border-radius: 14px; background: rgba(39,208,5,0.16); display: flex; align-items: center; justify-content: center; color: #1a8f00; margin-bottom: 14px;">{{ checkIcon }}</div><h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700; margin: 0 0 7px;">Tech Provider Aprovado</h3><p style="font-size: 13.5px; line-height: 1.6; color: #4a564d; margin: 0;">Estrutura preparada para sua empresa operar como Tech Provider com API Oficial de forma profissional.</p></div>
+      <div class="glass grain" style="border-radius: 22px; padding: 24px 22px; box-shadow: 0 24px 50px -30px rgba(20,60,20,0.25);"><div style="width: 46px; height: 46px; border-radius: 14px; background: rgba(39,208,5,0.16); display: flex; align-items: center; justify-content: center; color: #1a8f00; margin-bottom: 14px;">{{ checkIcon }}</div><h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700; margin: 0 0 7px;">Cadastro Incorporado</h3><p style="font-size: 13.5px; line-height: 1.6; color: #4a564d; margin: 0;">Cadastro Incorporado preparado para conectar contas WhatsApp Business com segurança.</p></div>
+      <div class="glass grain" style="border-radius: 22px; padding: 24px 22px; box-shadow: 0 24px 50px -30px rgba(20,60,20,0.25);"><div style="width: 46px; height: 46px; border-radius: 14px; background: rgba(39,208,5,0.16); display: flex; align-items: center; justify-content: center; color: #1a8f00; margin-bottom: 14px;">{{ checkIcon }}</div><h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700; margin: 0 0 7px;">Business Manager Verificado</h3><p style="font-size: 13.5px; line-height: 1.6; color: #4a564d; margin: 0;">Estrutura empresarial analisada e organizada para o processo de configuração e aprovação.</p></div>
+      <div class="glass grain" style="border-radius: 22px; padding: 24px 22px; box-shadow: 0 24px 50px -30px rgba(20,60,20,0.25);"><div style="width: 46px; height: 46px; border-radius: 14px; background: rgba(39,208,5,0.16); display: flex; align-items: center; justify-content: center; color: #1a8f00; margin-bottom: 14px;">{{ checkIcon }}</div><h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700; margin: 0 0 7px;">Broadcast Validado</h3><p style="font-size: 13.5px; line-height: 1.6; color: #4a564d; margin: 0;">Estrutura de envio em massa testada para disparos a listas autorizadas de contatos.</p></div>
+      <div class="glass grain" style="border-radius: 22px; padding: 24px 22px; box-shadow: 0 24px 50px -30px rgba(20,60,20,0.25);"><div style="width: 46px; height: 46px; border-radius: 14px; background: rgba(39,208,5,0.16); display: flex; align-items: center; justify-content: center; color: #1a8f00; margin-bottom: 14px;">{{ checkIcon }}</div><h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700; margin: 0 0 7px;">Estrutura para Escala</h3><p style="font-size: 13.5px; line-height: 1.6; color: #4a564d; margin: 0;">Operação preparada para campanhas com maior volume de mensagens pela API Oficial.</p></div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section data-screen-label="Depoimentos" class="reveal" style="max-width: 1180px; margin: 0 auto; padding: clamp(44px, 8vw, 60px) 20px; background-image: radial-gradient(40% 80% at 8% 40%, rgba(198,235,255,0.35), transparent 65%);">
+    <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(28px, 4vw, 42px); text-align: center; margin: 0 0 44px; letter-spacing: -0.01em;">O que os clientes dizem</h2>
+    <!-- Substitua os textos e iniciais pelos depoimentos reais dos clientes. Opcional: anexe o print da conversa como imagem secundaria. -->
+    <div style="overflow: hidden;">
+      <div style="display: flex; transition: transform 0.55s cubic-bezier(0.22,0.61,0.36,1); transform: {{ slideTransform }};">
+        <sc-for list="{{ testimonialsView }}" as="dep" hint-placeholder-count="6">
+          <div style="min-width: {{ cardBasis }}; display: flex; padding: 6px 9px; box-sizing: border-box;">
+          <figure class="glass grain" style="margin: 0; border-radius: 22px; padding: 26px 24px; box-shadow: 0 24px 50px -30px rgba(20,60,20,0.25); display: flex; flex-direction: column; gap: 16px; width: 100%;">
+          <div style="color: #27D005; display: flex; gap: 2px;">{{ dep.stars }}</div>
+          <blockquote style="margin: 0; font-size: 15px; line-height: 1.6; color: #21302a;">{{ dep.quote }}</blockquote>
+          <figcaption style="display: flex; align-items: center; gap: 12px; margin-top: 4px;">
+            <span style="width: 42px; height: 42px; flex-shrink: 0; border-radius: 50%; background: #15201a; color: #bff2a8; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center;">{{ dep.initials }}</span>
+            <span>
+              <span style="display: block; font-weight: 700; font-size: 14px;">{{ dep.name }}</span>
+              <span style="display: block; font-size: 12.5px; color: #5c6a60;">{{ dep.role }}</span>
+            </span>
+          </figcaption>
+        </figure>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 28px;">
+      <sc-for list="{{ dots }}" as="dot" hint-placeholder-count="6">
+        <button onClick="{{ dot.go }}" aria-label="Ver depoimento" style="border: none; padding: 0; cursor: pointer; height: 9px; width: {{ dot.width }}; border-radius: 100px; background: {{ dot.bg }}; transition: width 0.3s ease, background 0.3s ease;"></button>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section data-screen-label="FAQ" id="faq" class="reveal" style="max-width: 1180px; margin: 0 auto; padding: clamp(44px, 8vw, 60px) 20px;">
+    <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(28px, 4vw, 42px); text-align: center; margin: 0 0 40px; letter-spacing: -0.01em;">Perguntas frequentes</h2>
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <sc-for list="{{ faqItems }}" as="faq" hint-placeholder-count="5">
+        <div class="glass" style="border-radius: 18px; overflow: hidden;">
+          <button onClick="{{ faq.toggle }}" style="width: 100%; text-align: left; background: none; border: none; color: #15201a; padding: 19px 22px; font-family: Inter, sans-serif; font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: space-between; gap: 12px; cursor: pointer;">
+            <span>{{ faq.q }}</span>
+            <span style="flex-shrink: 0; color: #1a8f00; transform: {{ faq.chevronTransform }}; transition: transform 0.25s ease;">{{ chevronIcon }}</span>
+          </button>
+          <div style="max-height: {{ faq.maxHeight }}; overflow: hidden; transition: max-height 0.3s ease;">
+            <p style="margin: 0; padding: 0 22px 20px; font-size: 14px; line-height: 1.6; color: #4a564d;">{{ faq.a }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section data-screen-label="CTA final" class="reveal" style="max-width: 1180px; margin: 0 auto; padding: clamp(44px, 8vw, 60px) 20px clamp(60px, 10vw, 90px);">
+    <div class="glass-deep grain" style="border-radius: 32px; padding: clamp(40px, 8vw, 64px) clamp(22px, 5vw, 32px); text-align: center; background-image: radial-gradient(50% 80% at 8% 40%, rgba(191,242,168,0.5), transparent 60%), radial-gradient(50% 80% at 95% 60%, rgba(198,235,255,0.5), transparent 60%); box-shadow: 0 34px 70px -30px rgba(20,60,20,0.3);">
+      <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(28px, 4.6vw, 46px); margin: 0 0 14px; letter-spacing: -0.02em;">Pronto para operar com API Oficial de verdade?</h2>
+      <p style="font-size: 16px; line-height: 1.6; color: #4a564d; margin: 0 0 30px; max-width: 480px; margin-left: auto; margin-right: auto;">Solicite um diagnóstico do seu cenário e receba o plano de implementação ideal para a sua operação.</p>
+      <button type="button" onClick="{{ openForm }}" class="cta-whatsapp" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: #15201a; color: #fff; font-weight: 700; font-size: 15px; padding: 18px 32px; border-radius: 100px; border: none; cursor: pointer; font-family: inherit; box-shadow: 0 14px 30px -10px rgba(21,32,26,0.5);" style-hover="background: #263229;">
+        {{ whatsappIcon }} QUERO MEU DIAGNÓSTICO
+      </button>
+    </div>
+  </section>
+
+  <!-- RODAPÉ -->
+  <footer style="border-top: 1px solid rgba(21,32,26,0.1);">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 48px 20px 24px; display: flex; flex-direction: column; gap: 32px;">
+      <div class="footer-cols" style="display: grid; grid-template-columns: 1fr; gap: 24px;">
+        <div>
+          <img class="footer-logo" src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/igm-removebg-preview-2Wkd69J1dATe99R9tzzZhVJmMRM2wf.png" alt="Logo IGM" loading="lazy" decoding="async" width="84" height="28" style="height: 28px; width: auto; margin-bottom: 12px; display: block;">
+          <p class="footer-desc" style="font-size: 13px; color: #5c6a60; margin-top: 0; margin-bottom: 0; max-width: 260px; line-height: 1.6;">IGM | Inbound Growth Marketing. Implementação de API Oficial do WhatsApp, Tech Provider e automações.</p>
+        </div>
+        <div>
+          <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; color: #15201a;">Contato</div>
+          <div class="footer-contato" style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 10px 18px; font-size: 14px; color: #4a564d;">
+            <a href="{{ whatsappUrl }}" target="_blank" rel="noopener" class="cta-whatsapp" style="color: #4a564d; text-decoration: none;" style-hover="color: #1a8f00;">WhatsApp</a>
+            <span aria-hidden="true" style="color: rgba(18,48,28,0.3); font-size: 12px; align-self: center;">•</span>
+            <a href="https://instagram.com/igm" target="_blank" rel="noopener" style="color: #4a564d; text-decoration: none;" style-hover="color: #1a8f00;">Instagram</a>
+            <span aria-hidden="true" style="color: rgba(18,48,28,0.3); font-size: 12px; align-self: center;">•</span>
+            <a href="https://www.behance.net/igm" target="_blank" rel="noopener" style="color: #4a564d; text-decoration: none;" style-hover="color: #1a8f00;">Behance</a>
+            <span aria-hidden="true" style="color: rgba(18,48,28,0.3); font-size: 12px; align-self: center;">•</span>
+            <a href="/sites" style="color: #4a564d; text-decoration: none;" style-hover="color: #1a8f00;">Criação de sites</a>
+            <span aria-hidden="true" style="color: rgba(18,48,28,0.3); font-size: 12px; align-self: center;">•</span>
+            <a href="https://igmarketing.vercel.app" target="_blank" rel="noopener" style="color: #4a564d; text-decoration: none;" style-hover="color: #1a8f00;">Site institucional</a>
+          </div>
+        </div>
+      </div>
+      <div style="border-top: 1px solid rgba(21,32,26,0.1); padding-top: 20px; display: flex; flex-direction: column; gap: 10px; align-items: center; font-size: 12.5px; color: #5c6a60; text-align: center;">
+        <div style="display: flex; gap: 18px; flex-wrap: wrap; justify-content: center;">
+          <a href="/politica-de-privacidade" style="color: #5c6a60; text-decoration: none;" style-hover="color: #1a8f00;">Política de Privacidade</a>
+          <a href="/termos-de-uso" style="color: #5c6a60; text-decoration: none;" style-hover="color: #1a8f00;">Termos de Uso</a>
+        </div>
+        <span>Todos os direitos reservados.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX PORTFÓLIO -->
+  <div onClick="{{ lightbox.close }}" style="position: fixed; inset: 0; z-index: 80; display: {{ lightbox.display }}; align-items: center; justify-content: center; padding: 24px; background: rgba(8,14,10,0.82); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
+    <div style="width: 100%; max-width: 880px;">
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px;">
+        <div>
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #46e024;">{{ lightbox.category }}</div>
+          <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; color: #fbfff9;">{{ lightbox.title }}</div>
+        </div>
+        <button onClick="{{ lightbox.close }}" aria-label="Fechar" style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.08); color: #fff; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center;">×</button>
+      </div>
+      <div style="border-radius: 16px; overflow: hidden; background: #0d130f; border: 1px solid rgba(255,255,255,0.1); max-height: 74vh; overflow-y: auto;">
+        <div style="width: 100%; min-height: 300px; background-image: url('{{ lightbox.img }}'); background-size: cover; background-position: top; aspect-ratio: 3/4;"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MODAL FORMULÁRIO -->
+  <div onClick="{{ closeForm }}" style="position: fixed; inset: 0; z-index: 90; display: {{ formDisplay }}; align-items: center; justify-content: center; padding: 18px; background: rgba(8,14,10,0.72); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);">
+    <div onClick="{{ stop }}" style="width: 100%; max-width: 430px; background: #ffffff; border-radius: 24px; padding: 28px 24px; box-shadow: 0 40px 90px -30px rgba(11,17,13,0.5); max-height: 92vh; overflow-y: auto;">
+      <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 4px;">
+        <h3 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 21px; margin: 0; color: #15201a;">Quase lá!</h3>
+        <button type="button" onClick="{{ closeForm }}" aria-label="Fechar" style="width: 34px; height: 34px; flex-shrink: 0; border-radius: 50%; border: 1px solid rgba(18,48,28,0.12); background: #f2f6ef; color: #5c6a60; font-size: 18px; cursor: pointer; line-height: 1;">×</button>
+      </div>
+      <p style="font-size: 13.5px; color: #5c6a60; margin: 0 0 20px; line-height: 1.5;">Preencha para eu já chegar no WhatsApp com o seu contexto.</p>
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <label style="display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; font-weight: 700; color: #21302a;">Nome*<input value="{{ form.nome }}" onChange="{{ setNome }}" type="text" placeholder="Seu nome" style="padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(18,48,28,0.16); font-size: 14px; font-family: inherit; color: #15201a; background: #fff; outline: none; width: 100%; box-sizing: border-box;" style-focus="border-color: #27D005;"></label>
+        <label style="display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; font-weight: 700; color: #21302a;">Telefone / WhatsApp*<input value="{{ form.telefone }}" onChange="{{ setTelefone }}" type="tel" placeholder="(00) 00000-0000" style="padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(18,48,28,0.16); font-size: 14px; font-family: inherit; color: #15201a; background: #fff; outline: none; width: 100%; box-sizing: border-box;" style-focus="border-color: #27D005;"></label>
+        <label style="display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; font-weight: 700; color: #21302a;">E-mail (opcional)<input value="{{ form.email }}" onChange="{{ setEmail }}" type="email" placeholder="voce@email.com" style="padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(18,48,28,0.16); font-size: 14px; font-family: inherit; color: #15201a; background: #fff; outline: none; width: 100%; box-sizing: border-box;" style-focus="border-color: #27D005;"></label>
+        <label style="display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; font-weight: 700; color: #21302a;">Segmento*<select value="{{ form.segmento }}" onChange="{{ setSegmento }}" style="padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(18,48,28,0.16); font-size: 14px; font-family: inherit; color: #15201a; background: #fff; outline: none; width: 100%; box-sizing: border-box;" style-focus="border-color: #27D005;"><option value="">Selecione...</option><option value="Comércio / Loja">Comércio / Loja</option><option value="Serviços">Serviços</option><option value="Saúde">Saúde</option><option value="Contabilidade / Financeiro">Contabilidade / Financeiro</option><option value="Alimentação">Alimentação</option><option value="Beleza / Estética">Beleza / Estética</option><option value="Agência / Marketing">Agência / Marketing</option><option value="Outro">Outro</option></select></label>
+        <p style="display: {{ formErrorDisplay }}; margin: 0; font-size: 12.5px; font-weight: 600; color: #c0392b;">{{ formError }}</p>
+        <button type="button" onClick="{{ submitForm }}" class="cta-whatsapp" style="display: flex; align-items: center; justify-content: center; gap: 10px; background: #27D005; color: #062600; font-weight: 700; font-size: 15px; padding: 15px 24px; border-radius: 100px; border: none; cursor: pointer; font-family: inherit; margin-top: 4px; box-shadow: 0 14px 30px -12px rgba(39,208,5,0.6);" style-hover="background: #1FA804;">{{ whatsappIcon }} Continuar no WhatsApp</button>
+        <p style="margin: 0; font-size: 11px; color: #9aa89e; text-align: center;">Seus dados vão apenas na mensagem do WhatsApp.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTÃO FLUTUANTE WHATSAPP -->
+  <button type="button" onClick="{{ openForm }}" class="cta-whatsapp" aria-label="Falar no WhatsApp" style="position: fixed; right: 20px; bottom: 20px; z-index: 70; width: 58px; height: 58px; border-radius: 50%; background: #27D005; color: #062600; display: flex; align-items: center; justify-content: center; border: none; cursor: pointer; padding: 0; box-shadow: 0 10px 26px rgba(20,60,20,0.35); animation: pulseWA 2.4s infinite;" style-hover="background: #1FA804;">
+    {{ whatsappIconBig }}
+  </button>
+</div>
+
+
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" fill="#0b110d"/><rect x="150" y="150" width="212" height="212" rx="46" fill="#27D005"/><text x="256" y="300" font-family="sans-serif" font-size="112" font-weight="700" fill="#062600" text-anchor="middle">IGM</text></svg></template></x-dc>
+<script type="text/x-dc" data-dc-script>
+const WHATSAPP_URL = "https://wa.me/5533984311539?text=Ol%C3%A1%2C%20quero%20um%20diagn%C3%B3stico%20para%20implementar%20a%20API%20Oficial%20do%20WhatsApp"; // troque o número acima se necessário
+
+const WHY_CARDS = [
+  { title: "API Oficial estável", desc: "Pare de depender de APIs não oficiais que caem e bloqueiam. Opere na infraestrutura oficial da Meta.", icon: "shield" },
+  { title: "Disparos em massa", desc: "Envie campanhas, follow-ups e avisos para listas autorizadas com organização profissional.", icon: "megaphone" },
+  { title: "Chatwoot integrado", desc: "Atendimento centralizado, com histórico das conversas e vários atendentes no mesmo número.", icon: "chat" },
+  { title: "Automações com n8n", desc: "Fluxos automáticos conectando WhatsApp, seu CRM e as ferramentas que você já usa.", icon: "zap" },
+  { title: "Cadastro Incorporado", desc: "Conecte contas de clientes com segurança e mantenha a Coexistência com o WhatsApp Business.", icon: "clock" },
+  { title: "Serviço recorrente", desc: "Estrutura pronta para você revender essa implementação como serviço mensal para outras empresas.", icon: "star" },
+];
+
+const STEPS = [
+  { n: 1, title: "Diagnóstico do seu cenário", desc: "Você chama no WhatsApp e eu analiso Business Manager, aplicativo, domínio e o objetivo da operação." },
+  { n: 2, title: "Configuração técnica", desc: "Configuro o Meta Developers, a API Oficial, webhooks e toda a estrutura da operação." },
+  { n: 3, title: "Tech Provider + Cadastro Incorporado", desc: "Preparo e conduzo o processo de Tech Provider e Cadastro Incorporado para análise da Meta." },
+  { n: 4, title: "Entrega pronta para operar", desc: "Você recebe Chatwoot, n8n e broadcast configurados, prontos para disparar em massa." },
+];
+
+const INCLUDED = [
+  "Aplicativo configurado para solicitação como Tech Provider",
+  "API Oficial do WhatsApp conectada corretamente",
+  "Cadastro Incorporado validado",
+  "Coexistência preparada",
+  "Chatwoot instalado e configurado",
+  "n8n instalado e configurado",
+  "Estrutura de broadcast pronta para disparos",
+  "Operação pronta para vender como serviço recorrente",
+];
+
+const GOOD_POINTS = [
+  "Desenhado para gerar conversa no seu WhatsApp",
+  "Rápido no celular, onde seu cliente realmente está",
+  "Pronto para receber anúncios desde o primeiro dia",
+  "Hospedagem e suporte contínuos, você nunca fica na mão",
+  "Feito por quem também domina tráfego pago e automação",
+];
+
+const BAD_POINTS = [
+  "Bonito na entrega, mas não gera nenhum contato",
+  "Lento e desconfigurado no celular",
+  "Sem estrutura de conversão para campanhas",
+  "Entregue e abandonado, sem suporte depois",
+  "Sem experiência prática em campanhas pagas",
+];
+
+const PORTFOLIO = [
+  { title: "Guimarães Contabilidade", category: "Contabilidade", img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/behance_img_4-NMZv6B6IZIsTWAlCdJYJWZCQbI6dYs.png" },
+  { title: "Supremo Contabilidade", category: "Contabilidade", img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/b83162231640531.688cb44bc50d3-Lc9ll17EyyQaIjyE3BscoFgsW4jBpV.png" },
+  { title: "Contabilizeasy", category: "Contabilidade", img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/behance_img_1-Z73dlnIjewGlp7pQ8zLop0tztTL5FC.png" },
+  { title: "ContabilON", category: "Contabilidade", img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/P%C3%A1gina%20Institucional%20Contabilidade%20_%20ContabilOn_1770909215222-GLleHWu10IcGCZXrp5drW9Rj20T917.webp" },
+  { title: "Clínica Pio", category: "Saúde", img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/0218de189991745.65b3aca9852cf-VqLBMRy7WMDhSBOF9ETD8rHnminB04.webp" },
+  { title: "Infinicare", category: "Saúde", img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/de4faf185594067.65668cbb555c0-k1kcYxmp1VH0serzYDSyn95vEbvQkM.webp" },
+  { title: "Dra. Gabriela Aguiar", category: "Saúde", img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6cb1e0242105671.6966555eb864f-GhrS3grbjtN4Xr6a6GejTuWkh7oyzt.webp" },
+  { title: "Dr. Teeth", category: "Saúde", img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/15e1f2139666263.6233610d7ca57-j7tgswRFNMYHreDQq2uHxxpHwFjL8H.webp" },
+];
+
+const FAQ = [
+  { q: "Você garante a aprovação como Tech Provider?", a: "Não. A decisão final é sempre da Meta. Meu trabalho é preparar, configurar e conduzir o processo da forma mais correta possível, evitando erros técnicos e aumentando as chances de aprovação." },
+  { q: "Quanto custa a implementação?", a: "Não trabalho com valor de tabela. O investimento é definido após um diagnóstico do seu cenário: infraestrutura, volume, automações e objetivo da operação." },
+  { q: "Quanto tempo leva?", a: "Depende do escopo e do seu cenário atual. Após o diagnóstico eu apresento o prazo estimado do projeto." },
+  { q: "O que eu preciso ter para começar?", a: "Em geral: Business Manager, um domínio e, no plano Premium, uma VPS. No diagnóstico eu confirmo o que falta no seu caso." },
+  { q: "Preciso de VPS?", a: "Para a Implementação Completa Premium (Chatwoot e n8n), sim. Eu oriento a contratação e faço toda a configuração." },
+  { q: "Consigo revender esse serviço?", a: "Sim. A estrutura é preparada para você operar e oferecer a implementação e o envio em massa como serviço recorrente para outras empresas." },
+  { q: "Posso disparar para qualquer lista?", a: "Os envios em massa devem ser feitos para listas autorizadas, seguindo as políticas da Meta. A estrutura é preparada para operar dentro dessas regras." },
+];
+
+const FILLED_STAR = '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l2.6 5.9L21 9.6l-4.6 4.2L17.5 21 12 17.6 6.5 21l1.1-7.2L3 9.6l6.4-0.7z"/></svg>';
+
+// Substitua pelos depoimentos reais dos seus clientes (nome, segmento e a frase que ele disse).
+const TESTIMONIALS = [
+  { quote: "Depoimento real aqui: conte como saiu das APIs não oficiais e passou a operar com estabilidade na API Oficial.", name: "Nome do cliente", role: "Operação com API Oficial", initials: "NC" },
+  { quote: "Depoimento real aqui: fale sobre a facilidade de disparar campanhas em massa pelo Chatwoot.", name: "Nome do cliente", role: "Operação com API Oficial", initials: "NC" },
+  { quote: "Depoimento real aqui: comente como a automação com n8n economizou horas da sua equipe.", name: "Nome do cliente", role: "Operação com API Oficial", initials: "NC" },
+  { quote: "Depoimento real aqui: destaque a organização do atendimento depois do Chatwoot configurado.", name: "Nome do cliente", role: "Operação com API Oficial", initials: "NC" },
+  { quote: "Depoimento real aqui: diga como passou a vender a implementação como serviço recorrente.", name: "Nome do cliente", role: "Operação com API Oficial", initials: "NC" },
+  { quote: "Depoimento real aqui: fale sobre o suporte durante todo o processo de Tech Provider.", name: "Nome do cliente", role: "Operação com API Oficial", initials: "NC" },
+];
+
+const ICONS = {
+  clock: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>',
+  star: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3l2.6 5.9L21 9.6l-4.6 4.2L17.5 21 12 17.6 6.5 21l1.1-7.2L3 9.6l6.4-0.7z"/></svg>',
+  chat: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>',
+  megaphone: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 13v-2z"/><path d="M7 13v5a2 2 0 0 0 2 2h1v-6"/></svg>',
+  zap: '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>',
+  shield: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>',
+};
+
+const CHECK_ICON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+const X_ICON = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+const CHEVRON_ICON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>';
+const ARROW_ICON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="19" x2="19" y2="5"/><polyline points="8 5 19 5 19 16"/></svg>';
+const SPARK_ICON = '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z"/></svg>';
+const BOLT_ICON = '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>';
+const CHECK_CIRCLE_ICON = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>';
+const WA_ICON = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.16c-.24.68-1.42 1.3-1.96 1.38-.5.08-1.14.11-1.83-.11-.42-.13-.97-.31-1.67-.61-2.94-1.27-4.86-4.22-5.01-4.42-.15-.19-1.2-1.59-1.2-3.03 0-1.44.75-2.15 1.02-2.44.27-.29.58-.36.78-.36.19 0 .39 0 .55.01.18.01.42-.07.65.5.24.58.82 2.01.89 2.16.07.15.12.32.02.51-.09.19-.14.3-.28.47-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.15.27.68 1.12 1.46 1.81 1 .89 1.85 1.17 2.12 1.3.27.13.43.11.59-.07.16-.18.68-.79.86-1.06.18-.27.36-.22.6-.13.24.09 1.53.72 1.79.85.27.13.44.19.51.3.06.11.06.63-.18 1.31z"/></svg>';
+const WA_ICON_BIG = '<svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.16c-.24.68-1.42 1.3-1.96 1.38-.5.08-1.14.11-1.83-.11-.42-.13-.97-.31-1.67-.61-2.94-1.27-4.86-4.22-5.01-4.42-.15-.19-1.2-1.59-1.2-3.03 0-1.44.75-2.15 1.02-2.44.27-.29.58-.36.78-.36.19 0 .39 0 .55.01.18.01.42-.07.65.5.24.58.82 2.01.89 2.16.07.15.12.32.02.51-.09.19-.14.3-.28.47-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.15.27.68 1.12 1.46 1.81 1 .89 1.85 1.17 2.12 1.3.27.13.43.11.59-.07.16-.18.68-.79.86-1.06.18-.27.36-.22.6-.13.24.09 1.53.72 1.79.85.27.13.44.19.51.3.06.11.06.63-.18 1.31z"/></svg>';
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    // Contador de 48h: persiste por navegador (não reinicia ao atualizar), mas inicia 48h para cada novo visitante.
+    let deadline;
+    try {
+      const stored = parseInt(localStorage.getItem("igm_deadline"), 10);
+      if (stored && stored > Date.now()) deadline = stored;
+    } catch (e) {}
+    if (!deadline) {
+      deadline = Date.now() + 48 * 60 * 60 * 1000;
+      try { localStorage.setItem("igm_deadline", String(deadline)); } catch (e) {}
+    }
+    this.state = {
+      deadline: deadline,
+      now: Date.now(),
+      reducedMotion: typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+      notebookScrollable: true,
+      phoneScrollable: true,
+      notebookScrollDist: 0,
+      phoneScrollDist: 0,
+      openFaq: 0,
+      lightbox: null,
+      form: { nome: "", telefone: "", email: "", segmento: "" },
+      formOpen: false,
+      formContext: "",
+      formError: "",
+      slide: 0,
+      perView: (typeof window !== "undefined" ? (window.innerWidth < 640 ? 1 : window.innerWidth < 900 ? 2 : 3) : 3),
+    };
+    this.notebookImgRef = React.createRef();
+    this.phoneImgRef = React.createRef();
+  }
+
+  componentDidMount() {
+    this._timer = setInterval(() => this.setState({ now: Date.now() }), 1000);
+    this._slideTimer = setInterval(() => this.advance(), 5000);
+    this._onResize = () => {
+      const perView = window.innerWidth < 640 ? 1 : window.innerWidth < 900 ? 2 : 3;
+      const maxSlide = Math.max(0, TESTIMONIALS.length - perView);
+      this.setState(s => ({ perView: perView, slide: Math.min(s.slide, maxSlide) }));
+    };
+    window.addEventListener("resize", this._onResize);
+    const attachLoad = (ref, frameHeight, key) => {
+      const img = ref.current;
+      if (!img) return;
+      const handler = () => this.measureScroll(ref, frameHeight, key);
+      if (img.complete && img.naturalWidth) handler();
+      else img.addEventListener("load", handler);
+    };
+    attachLoad(this.notebookImgRef, 260, "n");
+    attachLoad(this.phoneImgRef, 210, "p");
+
+    if (!this.state.reducedMotion && typeof IntersectionObserver !== "undefined") {
+      this._io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) { e.target.classList.add("reveal--in"); this._io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+      requestAnimationFrame(() => {
+        document.querySelectorAll(".reveal").forEach((n) => this._io.observe(n));
+      });
+    }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this._timer);
+    clearInterval(this._slideTimer);
+    window.removeEventListener("resize", this._onResize);
+    if (this._io) this._io.disconnect();
+  }
+
+  advance() {
+    const maxSlide = Math.max(0, TESTIMONIALS.length - this.state.perView);
+    this.setState(s => ({ slide: s.slide >= maxSlide ? 0 : s.slide + 1 }));
+  }
+
+  goToSlide(i) {
+    clearInterval(this._slideTimer);
+    this._slideTimer = setInterval(() => this.advance(), 5000);
+    this.setState({ slide: i });
+  }
+
+  measureScroll(imgRef, frameHeight, key) {
+    const img = imgRef.current;
+    if (!img || !img.naturalWidth) return;
+    const scaledHeight = (img.naturalHeight / img.naturalWidth) * img.clientWidth;
+    const dist = scaledHeight - frameHeight;
+    if (dist <= 4) this.setState({ [key === "n" ? "notebookScrollable" : "phoneScrollable"]: false });
+    else this.setState({ [key === "n" ? "notebookScrollDist" : "phoneScrollDist"]: Math.round(dist) });
+  }
+
+  openForm(context) { this.setState({ formOpen: true, formContext: context || "", formError: "" }); }
+  closeForm() { this.setState({ formOpen: false }); }
+  setField(k, v) { this.setState(s => ({ form: { ...s.form, [k]: v } })); }
+  submitForm() {
+    const f = this.state.form;
+    if (!f.nome.trim() || !f.telefone.trim() || !f.segmento.trim()) { this.setState({ formError: "Preencha nome, telefone e segmento." }); return; }
+    const ctx = this.state.formContext ? (" (" + this.state.formContext + ")") : "";
+    let msg = "Olá! Meu nome é " + f.nome + " e tenho interesse" + ctx + ".";
+    msg += "\nTelefone: " + f.telefone;
+    if (f.email.trim()) msg += "\nE-mail: " + f.email;
+    msg += "\nSegmento: " + f.segmento;
+    window.open("https://wa.me/5533984311539?text=" + encodeURIComponent(msg), "_blank");
+    this.setState({ formOpen: false });
+  }
+
+  renderVals() {
+    const remainingMs = Math.max(0, this.state.deadline - this.state.now);
+    const totalSec = Math.floor(remainingMs / 1000);
+    const h = String(Math.floor(totalSec / 3600)).padStart(2, "0");
+    const m = String(Math.floor((totalSec % 3600) / 60)).padStart(2, "0");
+    const s = String(totalSec % 60).padStart(2, "0");
+
+    const faqItems = FAQ.map((f, i) => ({
+      q: f.q, a: f.a,
+      maxHeight: this.state.openFaq === i ? "300px" : "0px",
+      chevronTransform: this.state.openFaq === i ? "rotate(180deg)" : "rotate(0deg)",
+      toggle: () => this.setState(s => ({ openFaq: s.openFaq === i ? -1 : i })),
+    }));
+
+    const icon = (html) => React.createElement("span", { dangerouslySetInnerHTML: { __html: html }, style: { display: "inline-flex", alignItems: "center", lineHeight: 0 } });
+
+    return {
+      whatsappUrl: WHATSAPP_URL,
+      openForm: () => this.openForm("API Oficial do WhatsApp"),
+      openFormDiag: () => this.openForm("Implementação Tech Provider"),
+      openFormPremium: () => this.openForm("Implementação Completa Premium"),
+      closeForm: () => this.closeForm(),
+      stop: (e) => e.stopPropagation(),
+      submitForm: () => this.submitForm(),
+      setNome: (e) => this.setField("nome", e.target.value),
+      setTelefone: (e) => this.setField("telefone", e.target.value),
+      setEmail: (e) => this.setField("email", e.target.value),
+      setSegmento: (e) => this.setField("segmento", e.target.value),
+      form: this.state.form,
+      formDisplay: this.state.formOpen ? "flex" : "none",
+      formError: this.state.formError,
+      formErrorDisplay: this.state.formError ? "block" : "none",
+      whatsappIcon: icon(WA_ICON),
+      whatsappIconBig: icon(WA_ICON_BIG),
+      checkIcon: icon(CHECK_ICON),
+      xIcon: icon(X_ICON),
+      chevronIcon: icon(CHEVRON_ICON),
+      arrowIcon: icon(ARROW_ICON),
+      credItems: [
+        { icon: icon(CHECK_CIRCLE_ICON), label: "API Oficial da Meta" },
+        { icon: icon(ICONS.shield), label: "Tech Provider preparado" },
+        { icon: icon(ICONS.chat), label: "Chatwoot + n8n configurados" },
+        { icon: icon(ICONS.megaphone), label: "Broadcast em massa pronto" },
+      ],
+      sparkIcon: icon(SPARK_ICON),
+      boltIcon: icon(BOLT_ICON),
+      checkCircleIcon: icon(CHECK_CIRCLE_ICON),
+      countdownLabel: remainingMs > 0 ? h + ":" + m + ":" + s : "00:00:00",
+
+      whyCards: WHY_CARDS.map(c => ({ ...c, icon: icon(ICONS[c.icon]) })),
+      steps: STEPS,
+      included: INCLUDED,
+      comparisonRows: GOOD_POINTS.map((g, i) => ({ good: g, bad: BAD_POINTS[i] })),
+      portfolio: PORTFOLIO.map((p, i) => ({ ...p, alt: "Site criado pela IGM para " + p.title, open: () => this.setState({ lightbox: i }) })),
+      testimonials: TESTIMONIALS.map(t => ({ ...t, stars: icon(FILLED_STAR.repeat(5)) })),
+      testimonialsView: TESTIMONIALS.map(t => ({ ...t, stars: icon(FILLED_STAR.repeat(5)) })),
+      cardBasis: (100 / this.state.perView) + "%",
+      slideTransform: "translateX(-" + (this.state.slide * (100 / this.state.perView)) + "%)",
+      dots: Array.from({ length: Math.max(0, TESTIMONIALS.length - this.state.perView) + 1 }, (_, i) => ({
+        width: this.state.slide === i ? "26px" : "9px",
+        bg: this.state.slide === i ? "#27D005" : "rgba(21,32,26,0.2)",
+        go: () => this.goToSlide(i),
+      })),
+      lightbox: {
+        display: this.state.lightbox != null ? "flex" : "none",
+        img: this.state.lightbox != null ? PORTFOLIO[this.state.lightbox].img : "",
+        title: this.state.lightbox != null ? PORTFOLIO[this.state.lightbox].title : "",
+        category: this.state.lightbox != null ? PORTFOLIO[this.state.lightbox].category : "",
+        close: () => this.setState({ lightbox: null }),
+      },
+      faqItems,
+
+      notebookImgRef: this.notebookImgRef,
+      phoneImgRef: this.phoneImgRef,
+      notebookImgHeight: "auto",
+      phoneImgHeight: "auto",
+      notebookScrollDist: this.state.notebookScrollDist,
+      phoneScrollDist: this.state.phoneScrollDist,
+      notebookAnimation: this.state.reducedMotion || !this.state.notebookScrollable ? "none" : "scrollLoop 14s ease-in-out infinite",
+      phoneAnimation: this.state.reducedMotion || !this.state.phoneScrollable ? "none" : "scrollLoop 11s ease-in-out infinite 1.5s",
+    };
+  }
+}
+</script>
+</body>
+</html>
