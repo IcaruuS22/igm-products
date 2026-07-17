@@ -79,15 +79,6 @@
       .footer-desc { margin-left: 0; margin-right: 0; }
       .footer-contato { justify-content: flex-start; }
     }
-    .reveal { opacity: 0; transform: translateY(44px); transition: opacity 0.8s cubic-bezier(0.22,0.61,0.36,1), transform 0.8s cubic-bezier(0.22,0.61,0.36,1); will-change: opacity, transform; }
-    .reveal.reveal--in { opacity: 1; transform: none; }
-    .stagger > * { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22,0.61,0.36,1); }
-    .reveal--in .stagger > * { opacity: 1; transform: none; }
-    .reveal--in .stagger > *:nth-child(2) { transition-delay: 0.08s; }
-    .reveal--in .stagger > *:nth-child(3) { transition-delay: 0.16s; }
-    .reveal--in .stagger > *:nth-child(4) { transition-delay: 0.24s; }
-    .reveal--in .stagger > *:nth-child(5) { transition-delay: 0.32s; }
-    .reveal--in .stagger > *:nth-child(6) { transition-delay: 0.40s; }
     @media (prefers-reduced-motion: reduce) { * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; } .reveal { opacity: 1 !important; transform: none !important; } .stagger > * { opacity: 1 !important; transform: none !important; } }
     @media (min-width: 900px) {
       .nav-links { display: flex !important; }      .hero-grid { grid-template-columns: 1.02fr 0.98fr !important; grid-template-areas: 'text mock' 'cta mock' !important; gap: 24px 24px !important; padding: 56px 48px 56px !important; align-items: center !important; }
@@ -275,7 +266,7 @@
   </section>
 
   <!-- PORTFÓLIO (bento) -->
-  <section data-screen-label="Portfolio" id="portfolio" class="reveal" style="max-width: 1320px; margin: 0 auto; padding: clamp(44px, 8vw, 60px) 20px; background-image: radial-gradient(40% 70% at 92% 60%, rgba(255,224,178,0.35), transparent 65%);">
+  <section data-screen-label="Portfolio" id="portfolio" class="reveal" style="max-width: 1320px; margin: 0 auto; padding: clamp(44px, 8vw, 60px) 20px; background-image: radial-gradient(40% 70% at 92% 60%, rgba(255,224,178,0.35), transparent 65%); padding-top: clamp(44px, 8vw, 60px); padding-bottom: clamp(44px, 8vw, 60px); padding-left: 20px; padding-right: 20px">
     <div style="text-align: center; max-width: 620px; margin: 0 auto 44px;">
       <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(28px, 4vw, 42px); margin: 0 0 8px; letter-spacing: -0.01em;">Projetos que já estão no ar</h2>
       <p style="color: #4a564d; font-size: 15px; margin: 0;">Sites reais, criados pela IGM para negócios reais</p>
@@ -299,21 +290,25 @@
   </div>
   </section>
 
+  <!-- SOBRE A IGM -->
+  
+
   <!-- ATENDIMENTO NACIONAL -->
   <section data-screen-label="Brasil" class="reveal" style="max-width: 1320px; margin: 0 auto; padding: clamp(44px, 8vw, 60px) 20px;">
     <div class="glass-deep grain brasil-grid" style="display: grid; grid-template-columns: 1fr; gap: 32px; align-items: center; border-radius: 32px; padding: clamp(30px, 6vw, 52px) clamp(22px, 5vw, 40px); box-shadow: 0 30px 60px -30px rgba(20,60,20,0.25);">
       <div>
         
-        <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(28px, 4vw, 42px); line-height: 1.12; margin: 0 0 14px; letter-spacing: -0.01em;">Já atendemos <span style="color: #1a8f00;">+150 clientes</span> em todo o Brasil</h2>
+        <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(26px, 4vw, 42px); line-height: 1.12; margin: 0 0 14px; letter-spacing: -0.01em; text-wrap: balance; overflow-wrap: break-word;">Já atendemos <span style="color: #1a8f00;">+150 clientes</span> em todo o Brasil</h2>
         <p style="font-size: 15px; line-height: 1.65; color: #4a564d; margin: 0 0 24px; max-width: 460px;">De norte a sul, negócios de todos os portes confiam na IGM para marcar presença online. Onde tiver internet, a gente entrega.</p>
         <div style="display: flex; flex-wrap: wrap; gap: 12px;">
           <div style="flex: 1; min-width: 110px; background: rgba(255,255,255,0.55); border: 1px solid rgba(18,48,28,0.06); border-radius: 16px; padding: 16px 18px;"><div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 26px; color: #15201a;">+150</div><div style="font-size: 12.5px; color: #5c6a60; margin-top: 2px;">clientes atendidos</div></div>
           <div style="flex: 1; min-width: 110px; background: rgba(255,255,255,0.55); border: 1px solid rgba(18,48,28,0.06); border-radius: 16px; padding: 16px 18px;"><div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 26px; color: #15201a;">27</div><div style="font-size: 12.5px; color: #5c6a60; margin-top: 2px;">estados</div></div>
           <div style="flex: 1; min-width: 110px; background: rgba(255,255,255,0.55); border: 1px solid rgba(18,48,28,0.06); border-radius: 16px; padding: 16px 18px;"><div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 26px; color: #15201a;">5</div><div style="font-size: 12.5px; color: #5c6a60; margin-top: 2px;">regiões</div></div>
+          <div style="flex: 1; min-width: 110px; background: rgba(255,255,255,0.55); border: 1px solid rgba(18,48,28,0.06); border-radius: 16px; padding: 16px 18px;"><div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 26px; color: #15201a;">+6</div><div style="font-size: 12.5px; color: #5c6a60; margin-top: 2px;">anos de experiência</div></div>
         </div>
       </div>
-      <div style="position: relative;">
-        <svg viewBox="255 170 590 740" role="img" aria-label="Mapa do Brasil com atendimento em todos os estados" style="width: 370px; height: 449px; max-width: 620px; display: block; margin: 0 auto; overflow: visible">
+      <div style="position: relative; width: 100%; min-width: 0;">
+        <svg viewBox="255 170 590 740" role="img" aria-label="Mapa do Brasil com atendimento em todos os estados" style="width: 100%; height: auto; max-width: 440px; aspect-ratio: 590 / 740; display: block; margin: 0 auto; overflow: visible;">
           <g transform="matrix(1 0 0 1 540 540)" stroke="#ffffff" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
             <g transform="matrix(1 0 0 1 -248.53 -95.16)"><path fill="#27D005" d="M 30.47 237.77 L 28.39 237.73 L 28.93 235.92 L 28.72 235.09 L 28.47 234.6 L 27.22 233.9 L 27.08 233.45 L 27.35 232.3 L 26.58 230.35 L 25.49 229.71 L 19.89 228.46 L 12.55 228.27 L 12.82 227.71 L 15.31 225.45 L 16.2 224.22 L 16.49 223.02 L 16.27 221.79 L 15.59 220.88 L 14.76 220.44 L 13.08 217.49 L 12.31 217.05 L 11.41 216.86 L 10.28 215.73 L 9.36 213.35 L 7.36 211.82 L 6.38 208.2 L 5.51 206.56 L 3.63 205.48 L 3.55 204.31 L 4.36 204.41 L 4.78 203.89 L 4.85 203.22 L 4.65 202.8 L 2.53 201.87 L 2.17 201.21 L 0 199.32 L 0.04 198.95 L 0.66 198.9 L 1.16 197.58 L 1.15 196.27 L 4.16 195.88 L 4.66 195.49 L 4.44 194.14 L 3.27 192.57 L 3.27 192.57 L 21.22 200.05 L 44.88 205.71 L 57.02 208.85 L 83.46 223.02 L 111.97 235.15 L 111.97 235.15 L 114.94 236.41 L 114.94 236.41 L 114.64 236.89 L 113.07 237.55 L 110.98 239.14 L 108.12 241.93 L 106.47 242.79 L 105.81 242.61 L 104.28 242.79 L 104.23 243.35 L 102.31 244.65 L 100.23 245.64 L 98.79 247.47 L 98.35 248.65 L 97.74 248.93 L 96.57 248.18 L 95.81 248.05 L 93.44 248.1 L 92.76 248.36 L 92.13 248.81 L 91.77 249.67 L 89.33 253.15 L 85.56 254.4 L 84.72 255.09 L 82.78 255.6 L 81.75 255.63 L 81.83 253.52 L 80.47 253.72 L 76.92 252.95 L 71.68 252.48 L 66.59 252.86 L 65.93 252.28 L 63.66 252.11 L 60.1 253.94 L 57.37 254.56 L 55.69 253.89 L 54.29 252.45 L 52.65 253.61 L 52.69 236.06 L 52.74 234.96 L 53.21 234.25 L 53.28 231.9 L 53.02 231.02 L 53.99 229.84 L 54.47 228.7 L 53.31 228.9 L 50.34 231.49 L 48.74 232.5 L 46.68 234.88 L 44.73 235.55 L 44.08 236.63 L 42.27 237.62 z" transform="translate(-57.47, -224.1)"></path></g>
             <g transform="matrix(1 0 0 1 276.36 -86.82)"><path fill="#15401f" d="M 561.91 230.3 L 561.71 229.57 L 560.29 228.79 L 559.84 228.88 L 558.82 228.59 L 558.28 227.19 L 558.28 227.19 L 559.6 226.12 L 560.24 225.03 L 562.41 224.27 L 564.79 220.98 L 564.88 220.29 L 565.7 219.69 L 566.7 220.91 L 568.37 221.21 L 569.45 221.09 L 572 223.11 L 573.9 225.23 L 575.68 226.28 L 577.59 226.76 L 580.09 226.11 L 583.23 226.4 L 584.4 226.29 L 586.26 225.23 L 587.42 225.28 L 589.23 224.17 L 591.41 221.88 L 591.53 221.43 L 593.08 220.19 L 595.08 219.95 L 597.32 220.8 L 599.88 219.51 L 601.35 219.32 L 603.27 220.13 L 606.17 220.4 L 606.44 220.61 L 606.44 220.61 L 603.66 225.57 L 599.11 230.7 L 595.53 234.28 L 592.49 238.86 L 589.16 241.74 L 588.16 243.77 L 586.84 245.56 L 586.84 245.56 L 586.24 244.25 L 582.65 242.02 L 582.19 241.99 L 580.53 241.2 L 578.77 239.75 L 577.47 237.3 L 572.05 234.23 L 568.37 233.28 z" transform="translate(-582.36, -232.44)"></path></g>
@@ -626,16 +621,6 @@ class Component extends DCLogic {
     attachLoad(this.notebookImgRef, 260, "n");
     attachLoad(this.phoneImgRef, 210, "p");
 
-    if (!this.state.reducedMotion && typeof IntersectionObserver !== "undefined") {
-      this._io = new IntersectionObserver((entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) { e.target.classList.add("reveal--in"); this._io.unobserve(e.target); }
-        });
-      }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
-      requestAnimationFrame(() => {
-        document.querySelectorAll(".reveal").forEach((n) => this._io.observe(n));
-      });
-    }
   }
 
   componentWillUnmount() {
