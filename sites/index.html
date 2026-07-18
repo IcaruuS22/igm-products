@@ -63,13 +63,15 @@
     @keyframes attnPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(255,149,0,0.55); } 60% { box-shadow: 0 0 0 11px rgba(255,149,0,0); } }
     @keyframes mapPing { 0% { transform: scale(0.5); opacity: 0.9; } 70% { transform: scale(2.6); opacity: 0; } 100% { transform: scale(2.6); opacity: 0; } }
     @keyframes stepFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-    @keyframes stepGlow { 0%, 100% { box-shadow: 0 8px 22px -10px rgba(39,208,5,0.5); } 50% { box-shadow: 0 12px 30px -8px rgba(39,208,5,0.85); } }
+    @keyframes stepTravel { 0%, 12%, 100% { box-shadow: 0 8px 20px -10px rgba(39,208,5,0.5); transform: scale(1); } 6% { box-shadow: 0 0 0 10px rgba(39,208,5,0), 0 14px 30px -8px rgba(39,208,5,0.9); transform: scale(1.09); } }
+    @keyframes chevFlow { 0%, 100% { opacity: 0.25; transform: translateX(0); } 50% { opacity: 1; transform: translateX(4px); } }
     @keyframes railFlow { 0% { background-position: 0 -60px; } 100% { background-position: 0 60px; } }
     @keyframes fillBar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
     .step-card { position: relative; overflow: hidden; transition: transform 0.3s cubic-bezier(0.22,0.61,0.36,1), box-shadow 0.3s ease, border-color 0.3s ease; }
     .step-card:hover { transform: translateY(-5px); box-shadow: 0 26px 50px -28px rgba(20,60,20,0.4); border-color: rgba(39,208,5,0.4) !important; }
-    .step-card:hover .step-ic { background: #27D005 !important; color: #062600 !important; }
-    .step-ic { animation: stepFloat 3.4s ease-in-out infinite, stepGlow 3.4s ease-in-out infinite; transition: background 0.3s ease, color 0.3s ease; }
+    .step-card:hover .step-ic { transform: scale(1.06); }
+    .step-ic { animation: stepFloat 3.4s ease-in-out infinite, stepTravel 4s ease-in-out infinite; transition: transform 0.3s ease; }
+    .step-chev { animation: chevFlow 2s ease-in-out infinite; }
     .step-rail { background: linear-gradient(180deg, transparent, #27D005, transparent); background-size: 100% 60px; background-repeat: no-repeat; animation: railFlow 2.2s linear infinite; }
     .step-fill { transform-origin: left; }
     .reveal--in .step-fill { animation: fillBar 0.9s cubic-bezier(0.22,0.61,0.36,1) forwards; }
@@ -234,8 +236,8 @@
             <div class="step-rail" style="position: absolute; left: 0; top: 0; bottom: 0; width: 4px;"></div>
             <div style="display: flex; gap: 18px; align-items: flex-start;">
               <div style="position: relative; flex-shrink: 0;">
-                <div class="step-ic" style="width: 56px; height: 56px; border-radius: 16px; background: #15201a; color: #46e024; display: flex; align-items: center; justify-content: center; animation-delay: {{ step.delay }};">{{ step.icon }}</div>
-                <div style="position: absolute; top: -8px; right: -8px; width: 26px; height: 26px; border-radius: 50%; background: #27D005; color: #062600; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px -3px rgba(39,208,5,0.7); border: 2px solid #eef4ea;">{{ step.n }}</div>
+                <div class="step-ic" style="width: 56px; height: 56px; border-radius: 16px; background: linear-gradient(140deg, #34e10a, #1a9e04); color: #ffffff; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px -10px rgba(39,208,5,0.5); animation-delay: {{ step.delay }}, {{ step.delay }};">{{ step.icon }}</div>
+                <div style="position: absolute; top: -8px; right: -8px; width: 26px; height: 26px; border-radius: 50%; background: #15201a; color: #46e024; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px -3px rgba(20,60,20,0.5); border: 2px solid #eef4ea;">{{ step.n }}</div>
               </div>
               <div style="padding-top: 2px; flex: 1; min-width: 0;">
                 <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 700; margin: 0 0 7px; letter-spacing: -0.01em;">{{ step.title }}</h3>
