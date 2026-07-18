@@ -62,6 +62,17 @@
     @keyframes pulseWA { 0% { box-shadow: 0 0 0 0 rgba(39,208,5,0.5); } 70% { box-shadow: 0 0 0 16px rgba(39,208,5,0); } 100% { box-shadow: 0 0 0 0 rgba(39,208,5,0); } }
     @keyframes attnPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(255,149,0,0.55); } 60% { box-shadow: 0 0 0 11px rgba(255,149,0,0); } }
     @keyframes mapPing { 0% { transform: scale(0.5); opacity: 0.9; } 70% { transform: scale(2.6); opacity: 0; } 100% { transform: scale(2.6); opacity: 0; } }
+    @keyframes stepFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+    @keyframes stepGlow { 0%, 100% { box-shadow: 0 8px 22px -10px rgba(39,208,5,0.5); } 50% { box-shadow: 0 12px 30px -8px rgba(39,208,5,0.85); } }
+    @keyframes railFlow { 0% { background-position: 0 -60px; } 100% { background-position: 0 60px; } }
+    @keyframes fillBar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+    .step-card { position: relative; overflow: hidden; transition: transform 0.3s cubic-bezier(0.22,0.61,0.36,1), box-shadow 0.3s ease, border-color 0.3s ease; }
+    .step-card:hover { transform: translateY(-5px); box-shadow: 0 26px 50px -28px rgba(20,60,20,0.4); border-color: rgba(39,208,5,0.4) !important; }
+    .step-card:hover .step-ic { background: #27D005 !important; color: #062600 !important; }
+    .step-ic { animation: stepFloat 3.4s ease-in-out infinite, stepGlow 3.4s ease-in-out infinite; transition: background 0.3s ease, color 0.3s ease; }
+    .step-rail { background: linear-gradient(180deg, transparent, #27D005, transparent); background-size: 100% 60px; background-repeat: no-repeat; animation: railFlow 2.2s linear infinite; }
+    .step-fill { transform-origin: left; }
+    .reveal--in .step-fill { animation: fillBar 0.9s cubic-bezier(0.22,0.61,0.36,1) forwards; }
     @keyframes scrollLoop { 0%, 8% { transform: translateY(0); } 46%, 54% { transform: translateY(calc(-1 * var(--scroll-dist, 0px))); } 92%, 100% { transform: translateY(0); } }
     .hero-cta { align-items: center; text-align: center; }
     .hero-cta > a, .hero-cta > button { width: 100%; }
@@ -79,6 +90,15 @@
       .footer-desc { margin-left: 0; margin-right: 0; }
       .footer-contato { justify-content: flex-start; }
     }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.22,0.61,0.36,1), transform 0.7s cubic-bezier(0.22,0.61,0.36,1); }
+    .reveal.reveal--in { opacity: 1; transform: none; }
+    .stagger > * { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.22,0.61,0.36,1); }
+    .reveal--in .stagger > * { opacity: 1; transform: none; }
+    .reveal--in .stagger > *:nth-child(2) { transition-delay: 0.07s; }
+    .reveal--in .stagger > *:nth-child(3) { transition-delay: 0.14s; }
+    .reveal--in .stagger > *:nth-child(4) { transition-delay: 0.21s; }
+    .reveal--in .stagger > *:nth-child(5) { transition-delay: 0.28s; }
+    .reveal--in .stagger > *:nth-child(6) { transition-delay: 0.35s; }
     @media (prefers-reduced-motion: reduce) { * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; } .reveal { opacity: 1 !important; transform: none !important; } .stagger > * { opacity: 1 !important; transform: none !important; } }
     @media (min-width: 900px) {
       .nav-links { display: flex !important; }      .hero-grid { grid-template-columns: 1.02fr 0.98fr !important; grid-template-areas: 'text mock' 'cta mock' !important; gap: 24px 24px !important; padding: 56px 48px 56px !important; align-items: center !important; }
@@ -210,11 +230,18 @@
       </div>
       <div class="grid2 stagger" style="display: grid; grid-template-columns: 1fr; gap: 18px;">
         <sc-for list="{{ steps }}" as="step" hint-placeholder-count="4">
-          <div style="display: flex; gap: 18px; align-items: flex-start; background: rgba(255,255,255,0.55); border: 1px solid rgba(18,48,28,0.06); border-radius: 18px; padding: 22px 24px;">
-            <div style="width: 54px; height: 54px; flex-shrink: 0; border-radius: 15px; background: #15201a; color: #46e024; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 24px; display: flex; align-items: center; justify-content: center;">{{ step.n }}</div>
-            <div style="padding-top: 3px;">
-              <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700; margin: 0 0 6px;">{{ step.title }}</h3>
-              <p style="font-size: 14px; line-height: 1.6; color: #4a564d; margin: 0;">{{ step.desc }}</p>
+          <div class="step-card" style="background: rgba(255,255,255,0.6); border: 1px solid rgba(18,48,28,0.07); border-radius: 20px; padding: 24px 24px 26px;">
+            <div class="step-rail" style="position: absolute; left: 0; top: 0; bottom: 0; width: 4px;"></div>
+            <div style="display: flex; gap: 18px; align-items: flex-start;">
+              <div style="position: relative; flex-shrink: 0;">
+                <div class="step-ic" style="width: 56px; height: 56px; border-radius: 16px; background: #15201a; color: #46e024; display: flex; align-items: center; justify-content: center; animation-delay: {{ step.delay }};">{{ step.icon }}</div>
+                <div style="position: absolute; top: -8px; right: -8px; width: 26px; height: 26px; border-radius: 50%; background: #27D005; color: #062600; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px -3px rgba(39,208,5,0.7); border: 2px solid #eef4ea;">{{ step.n }}</div>
+              </div>
+              <div style="padding-top: 2px; flex: 1; min-width: 0;">
+                <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 700; margin: 0 0 7px; letter-spacing: -0.01em;">{{ step.title }}</h3>
+                <p style="font-size: 14px; line-height: 1.6; color: #4a564d; margin: 0 0 16px;">{{ step.desc }}</p>
+                <div style="height: 3px; border-radius: 3px; background: rgba(18,48,28,0.08); overflow: hidden;"><div class="step-fill" style="height: 100%; border-radius: 3px; background: linear-gradient(90deg, #27D005, #46e024);"></div></div>
+              </div>
             </div>
           </div>
         </sc-for>
@@ -452,7 +479,7 @@
   </div>
 
   <!-- BOTÃO FLUTUANTE WHATSAPP -->
-  <button type="button" onClick="{{ openForm }}" class="cta-whatsapp" aria-label="Falar no WhatsApp" style="position: fixed; right: 20px; bottom: 20px; z-index: 70; width: 58px; height: 58px; border-radius: 50%; background: #ffffff; color: #27D005; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(18,48,28,0.08); cursor: pointer; padding: 0; box-shadow: 0 10px 26px rgba(20,60,20,0.28); animation: pulseWA 2.4s infinite;" style-hover="background: #f2f6ef;">
+  <button type="button" onClick="{{ openForm }}" class="cta-whatsapp" aria-label="Falar no WhatsApp" style="position: fixed; right: 20px; bottom: 20px; z-index: 70; width: 62px; height: 62px; border-radius: 50%; background: #25D366; color: #ffffff; display: flex; align-items: center; justify-content: center; border: none; cursor: pointer; padding: 0; box-shadow: 0 10px 26px rgba(20,60,20,0.28); animation: pulseWA 2.4s infinite;" style-hover="background: #1FB855;">
     {{ whatsappIconBig }}
   </button>
 
@@ -479,11 +506,17 @@ const WHY_CARDS = [
   { title: "Suporte que não some", desc: "Hospedagem, suporte e ajustes com a IGM sempre por perto. Você nunca fica na mão depois da entrega.", icon: "shield" },
 ];
 
+const STEP_ICONS = {
+  chat: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>',
+  doc: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg>',
+  build: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+  rocket: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>',
+};
 const STEPS = [
-  { n: 1, title: "Chame no WhatsApp", desc: "Você chama no WhatsApp e conta sobre o seu negócio." },
-  { n: 2, title: "Fechamos o orçamento", desc: "Você envia fotos e textos e fechamos os detalhes do projeto." },
-  { n: 3, title: "Seu site é construído", desc: "Em até 5 dias úteis o seu site está pronto e no ar." },
-  { n: 4, title: "Você recebe tudo pronto", desc: "Link do site, WhatsApp conectado e suporte incluso desde o início." },
+  { n: 1, title: "Chame no WhatsApp", desc: "Você chama no WhatsApp e conta sobre o seu negócio.", ic: "chat", delay: "0s" },
+  { n: 2, title: "Fechamos o orçamento", desc: "Você envia fotos e textos e fechamos os detalhes do projeto.", ic: "doc", delay: "0.35s" },
+  { n: 3, title: "Seu site é construído", desc: "Em até 5 dias úteis o seu site está pronto e no ar.", ic: "build", delay: "0.7s" },
+  { n: 4, title: "Você recebe tudo pronto", desc: "Link do site, WhatsApp conectado e suporte incluso desde o início.", ic: "rocket", delay: "1.05s" },
 ];
 
 const INCLUDED = [
@@ -563,7 +596,7 @@ const SPARK_ICON = '<svg width="15" height="15" viewBox="0 0 24 24" fill="curren
 const BOLT_ICON = '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>';
 const CHECK_CIRCLE_ICON = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>';
 const WA_ICON = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.16c-.24.68-1.42 1.3-1.96 1.38-.5.08-1.14.11-1.83-.11-.42-.13-.97-.31-1.67-.61-2.94-1.27-4.86-4.22-5.01-4.42-.15-.19-1.2-1.59-1.2-3.03 0-1.44.75-2.15 1.02-2.44.27-.29.58-.36.78-.36.19 0 .39 0 .55.01.18.01.42-.07.65.5.24.58.82 2.01.89 2.16.07.15.12.32.02.51-.09.19-.14.3-.28.47-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.15.27.68 1.12 1.46 1.81 1 .89 1.85 1.17 2.12 1.3.27.13.43.11.59-.07.16-.18.68-.79.86-1.06.18-.27.36-.22.6-.13.24.09 1.53.72 1.79.85.27.13.44.19.51.3.06.11.06.63-.18 1.31z"/></svg>';
-const WA_ICON_BIG = '<svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.16c-.24.68-1.42 1.3-1.96 1.38-.5.08-1.14.11-1.83-.11-.42-.13-.97-.31-1.67-.61-2.94-1.27-4.86-4.22-5.01-4.42-.15-.19-1.2-1.59-1.2-3.03 0-1.44.75-2.15 1.02-2.44.27-.29.58-.36.78-.36.19 0 .39 0 .55.01.18.01.42-.07.65.5.24.58.82 2.01.89 2.16.07.15.12.32.02.51-.09.19-.14.3-.28.47-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.15.27.68 1.12 1.46 1.81 1 .89 1.85 1.17 2.12 1.3.27.13.43.11.59-.07.16-.18.68-.79.86-1.06.18-.27.36-.22.6-.13.24.09 1.53.72 1.79.85.27.13.44.19.51.3.06.11.06.63-.18 1.31z"/></svg>';
+const WA_ICON_BIG = '<svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.16c-.24.68-1.42 1.3-1.96 1.38-.5.08-1.14.11-1.83-.11-.42-.13-.97-.31-1.67-.61-2.94-1.27-4.86-4.22-5.01-4.42-.15-.19-1.2-1.59-1.2-3.03 0-1.44.75-2.15 1.02-2.44.27-.29.58-.36.78-.36.19 0 .39 0 .55.01.18.01.42-.07.65.5.24.58.82 2.01.89 2.16.07.15.12.32.02.51-.09.19-.14.3-.28.47-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.15.27.68 1.12 1.46 1.81 1 .89 1.85 1.17 2.12 1.3.27.13.43.11.59-.07.16-.18.68-.79.86-1.06.18-.27.36-.22.6-.13.24.09 1.53.72 1.79.85.27.13.44.19.51.3.06.11.06.63-.18 1.31z"/></svg>';
 
 class Component extends DCLogic {
   constructor(props) {
@@ -605,6 +638,17 @@ class Component extends DCLogic {
   componentDidMount() {
     this._timer = setInterval(() => this.setState({ now: Date.now() }), 1000);
     this._slideTimer = setInterval(() => this.advance(), 5000);
+    this._revealAll = () => { document.querySelectorAll(".reveal").forEach((n) => n.classList.add("reveal--in")); };
+    if (this.state.reducedMotion || typeof IntersectionObserver === "undefined") {
+      this._revealAll();
+    } else {
+      this._io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("reveal--in"); this._io.unobserve(e.target); } });
+      }, { threshold: 0.1, rootMargin: "0px 0px -8% 0px" });
+      requestAnimationFrame(() => { document.querySelectorAll(".reveal").forEach((n) => this._io.observe(n)); });
+      // Safety net: never leave a section invisible (mobile observer quirks)
+      this._revealFallback = setTimeout(this._revealAll, 1400);
+    }
     this._onResize = () => {
       const perView = window.innerWidth < 640 ? 1 : window.innerWidth < 900 ? 2 : 3;
       const maxSlide = Math.max(0, TESTIMONIALS.length - perView);
@@ -628,6 +672,7 @@ class Component extends DCLogic {
     clearInterval(this._slideTimer);
     window.removeEventListener("resize", this._onResize);
     if (this._io) this._io.disconnect();
+    if (this._revealFallback) clearTimeout(this._revealFallback);
   }
 
   advance() {
@@ -722,7 +767,7 @@ class Component extends DCLogic {
       countdownLabel: remainingMs > 0 ? h + ":" + m + ":" + s : "00:00:00",
 
       whyCards: WHY_CARDS.map(c => ({ ...c, icon: icon(ICONS[c.icon]) })),
-      steps: STEPS,
+      steps: STEPS.map(s => ({ ...s, icon: icon(STEP_ICONS[s.ic]) })),
       included: INCLUDED.map(x => ({ text: x.t, icon: icon(x.i) })),
       comparisonRows: GOOD_POINTS.map((g, i) => ({ good: g, bad: BAD_POINTS[i] })),
       portfolio: PORTFOLIO.map((p, i) => ({ ...p, alt: "Site criado pela IGM para " + p.title, open: () => this.setState({ lightbox: i }) })),
