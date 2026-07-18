@@ -72,7 +72,6 @@
     .step-card:hover .step-ic { transform: scale(1.06); }
     .step-ic { animation: stepFloat 3.4s ease-in-out infinite, stepTravel 4s ease-in-out infinite; transition: transform 0.3s ease; }
     .step-chev { animation: chevFlow 2s ease-in-out infinite; }
-    .step-rail { background: linear-gradient(180deg, transparent, #27D005, transparent); background-size: 100% 60px; background-repeat: no-repeat; animation: railFlow 2.2s linear infinite; }
     .step-fill { transform-origin: left; }
     .reveal--in .step-fill { animation: fillBar 0.9s cubic-bezier(0.22,0.61,0.36,1) forwards; }
     @keyframes scrollLoop { 0%, 8% { transform: translateY(0); } 46%, 54% { transform: translateY(calc(-1 * var(--scroll-dist, 0px))); } 92%, 100% { transform: translateY(0); } }
@@ -101,6 +100,10 @@
     .reveal--in .stagger > *:nth-child(4) { transition-delay: 0.21s; }
     .reveal--in .stagger > *:nth-child(5) { transition-delay: 0.28s; }
     .reveal--in .stagger > *:nth-child(6) { transition-delay: 0.35s; }
+    .reveal--in .stagger-steps > * { transition-delay: 0s; }
+    .reveal--in .stagger-steps > *:nth-child(2) { transition-delay: 0.16s; }
+    .reveal--in .stagger-steps > *:nth-child(3) { transition-delay: 0.32s; }
+    .reveal--in .stagger-steps > *:nth-child(4) { transition-delay: 0.48s; }
     @media (prefers-reduced-motion: reduce) { * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; } .reveal { opacity: 1 !important; transform: none !important; } .stagger > * { opacity: 1 !important; transform: none !important; } }
     @media (min-width: 900px) {
       .nav-links { display: flex !important; }      .hero-grid { grid-template-columns: 1.02fr 0.98fr !important; grid-template-areas: 'text mock' 'cta mock' !important; gap: 24px 24px !important; padding: 56px 48px 56px !important; align-items: center !important; }
@@ -230,10 +233,9 @@
       <div style="text-align: center; max-width: 620px; margin: 0 auto 44px;">
         <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(28px, 4vw, 42px); line-height: 1.15; margin: 0; letter-spacing: -0.01em;">Um processo simples, do primeiro contato até o site no ar</h2>
       </div>
-      <div class="grid2 stagger" style="display: grid; grid-template-columns: 1fr; gap: 18px;">
+      <div class="grid2 stagger stagger-steps" style="display: grid; grid-template-columns: 1fr; gap: 18px;">
         <sc-for list="{{ steps }}" as="step" hint-placeholder-count="4">
           <div class="step-card" style="background: rgba(255,255,255,0.6); border: 1px solid rgba(18,48,28,0.07); border-radius: 20px; padding: 24px 24px 26px;">
-            <div class="step-rail" style="position: absolute; left: 0; top: 0; bottom: 0; width: 4px;"></div>
             <div style="display: flex; gap: 18px; align-items: flex-start;">
               <div style="position: relative; flex-shrink: 0;">
                 <div class="step-ic" style="width: 56px; height: 56px; border-radius: 16px; background: linear-gradient(140deg, #34e10a, #1a9e04); color: #ffffff; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px -10px rgba(39,208,5,0.5); animation-delay: {{ step.delay }}, {{ step.delay }};">{{ step.icon }}</div>
@@ -427,7 +429,7 @@
             <span aria-hidden="true" style="color: rgba(18,48,28,0.3); font-size: 12px; align-self: center;">•</span>
             <a href="https://www.behance.net/igm" target="_blank" rel="noopener" style="color: #4a564d; text-decoration: none;" style-hover="color: #1a8f00;">Behance</a>
             <span aria-hidden="true" style="color: rgba(18,48,28,0.3); font-size: 12px; align-self: center;">•</span>
-            <a href="/api-oficial" style="color: #4a564d; text-decoration: none;" style-hover="color: #1a8f00;">API Oficial do WhatsApp</a>
+            <a href="api-oficial.dc.html" style="color: #4a564d; text-decoration: none;" style-hover="color: #1a8f00;">API Oficial do WhatsApp</a>
             <span aria-hidden="true" style="color: rgba(18,48,28,0.3); font-size: 12px; align-self: center;">•</span>
             <a href="https://igmarketing.vercel.app" target="_blank" rel="noopener" style="color: #4a564d; text-decoration: none;" style-hover="color: #1a8f00;">Site institucional</a>
           </div>
@@ -641,15 +643,24 @@ class Component extends DCLogic {
     this._timer = setInterval(() => this.setState({ now: Date.now() }), 1000);
     this._slideTimer = setInterval(() => this.advance(), 5000);
     this._revealAll = () => { document.querySelectorAll(".reveal").forEach((n) => n.classList.add("reveal--in")); };
-    if (this.state.reducedMotion || typeof IntersectionObserver === "undefined") {
+    if (this.state.reducedMotion) {
       this._revealAll();
     } else {
-      this._io = new IntersectionObserver((entries) => {
-        entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("reveal--in"); this._io.unobserve(e.target); } });
-      }, { threshold: 0.1, rootMargin: "0px 0px -8% 0px" });
-      requestAnimationFrame(() => { document.querySelectorAll(".reveal").forEach((n) => this._io.observe(n)); });
-      // Safety net: never leave a section invisible (mobile observer quirks)
-      this._revealFallback = setTimeout(this._revealAll, 1400);
+      // Scroll-driven reveal: bulletproof across browsers/mobile. Reveals each
+      // section as it enters the viewport, so the effect is visible on scroll.
+      this._checkReveal = () => {
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        document.querySelectorAll(".reveal:not(.reveal--in)").forEach((n) => {
+          const r = n.getBoundingClientRect();
+          if (r.top < vh * 0.86 && r.bottom > 0) n.classList.add("reveal--in");
+        });
+      };
+      this._onScroll = () => {
+        if (this._raf) return;
+        this._raf = requestAnimationFrame(() => { this._raf = null; this._checkReveal(); });
+      };
+      window.addEventListener("scroll", this._onScroll, { passive: true });
+      requestAnimationFrame(() => this._checkReveal());
     }
     this._onResize = () => {
       const perView = window.innerWidth < 640 ? 1 : window.innerWidth < 900 ? 2 : 3;
@@ -674,6 +685,8 @@ class Component extends DCLogic {
     clearInterval(this._slideTimer);
     window.removeEventListener("resize", this._onResize);
     if (this._io) this._io.disconnect();
+    if (this._onScroll) window.removeEventListener("scroll", this._onScroll);
+    if (this._raf) cancelAnimationFrame(this._raf);
     if (this._revealFallback) clearTimeout(this._revealFallback);
   }
 
